@@ -1,10 +1,17 @@
+import Main_Routes from './All_Routes/Main_Routes';
 import './App.css';
-import { BankApplicationMain } from './Components/BankApplicationMain';
+
+import Navbar from './Components/Navbar';
+
+
+
 
 function App() {
   return (
     <div className="App">
-      <h1>"Welcome to our remarkable tech team where innovation knows no limits!"</h1>
+
+      <Navbar/>
+      <Main_Routes/>
 
     </div>
   );
