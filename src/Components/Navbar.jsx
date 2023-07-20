@@ -38,12 +38,14 @@ const Navbar = () => {
             padding="5px 12px 5px 12px"
             border={"1px solid skyblue"}
             borderRadius="20px"
-            color="skyblue   "
+            color="skyblue"
           >
             Register
           </Button>
         </Link>
+
       </HStack>
+
     </Flex>
   );
 };

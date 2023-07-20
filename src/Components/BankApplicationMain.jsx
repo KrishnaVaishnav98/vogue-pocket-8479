@@ -24,9 +24,9 @@ export const BankApplicationMain = () => {
         savingsInvestments: '',
         outstandingLoansDebt: '',
         assets: '',
-        identificationProof: null,
-        incomeProof: null,
-        addressProof: null,
+        identificationProof: '',
+        incomeProof: '',
+        addressProof: '',
         loanType: '',
         loanAmount: '',
         loanTerm: '',
@@ -54,18 +54,33 @@ export const BankApplicationMain = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setUserInfo((prevUserInfo) => ({ ...prevUserInfo, [name]: value }));
+        setUserInfo({ ...userInfo, [name]: value });
     };
 
     const handleFileChange = (e) => {
         const { name, files } = e.target;
-        setUserInfo((prevUserInfo) => ({ ...prevUserInfo, [name]: files[0] }));
+        const file = files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setUserInfo((prevUserInfo) => ({ ...prevUserInfo, [name]: reader.result }));
+            };
+            reader.readAsDataURL(file);
+        }
     };
+
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(userInfo)
+    }
 
 
     return (
         <ChakraProvider>
-            {/* <Center> */}
+
             <Box display={"flex"} mt="50px" ml="100px">
                 <Stepper index={activeStep} orientation="vertical" height="400px" gap="0" colorScheme='green' >
                     {steps.map((step, index) => (
@@ -120,12 +135,14 @@ export const BankApplicationMain = () => {
                                         userInfo={userInfo}
                                         handleChange={handleChange}
                                         onPrevious={handlePreviousStep}
+                                        handleSubmit={handleSubmit}
                                     />
                                 )}
 
             </Box >
-            {/* </Center> */}
+
         </ChakraProvider >
 
     )
 }
+
