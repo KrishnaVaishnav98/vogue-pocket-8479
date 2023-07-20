@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, FormControl, FormLabel, Text, Input, Center, Button } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Text, Input, Center, Button, HStack } from '@chakra-ui/react';
 
 export const EmploymentDetailsStep = ({ userInfo, handleChange, onNext, onPrevious }) => {
     return (
@@ -27,8 +27,10 @@ export const EmploymentDetailsStep = ({ userInfo, handleChange, onNext, onPrevio
                     <Input type='text' placeholder='Monthly Income' name={"monthlyIncome"} value={userInfo.monthlyIncome} onChange={handleChange} />
                 </FormControl>
 
-                <Button variant={'outline'} onClick={onPrevious} colorScheme='blue' >Prev</Button>
-                <Button variant={'outline'} onClick={onNext} colorScheme='blue' >Next</Button>
+                <HStack display={"flex"} justifyContent={"space-around"}>
+                    <Button variant={'outline'} onClick={onPrevious} colorScheme='blue' >Prev</Button>
+                    <Button variant={'outline'} onClick={onNext} colorScheme='blue' >Next</Button>
+                </HStack>
             </Box>
         </Center >
     )

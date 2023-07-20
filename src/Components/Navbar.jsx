@@ -114,12 +114,23 @@ const Navbar = () => {
         <Link to="/login">Login</Link>
         <Link to="/register" color="skyblue">
           <Button
+
+            padding="5px 12px 5px 12px"
+            border={"1px solid skyblue"}
+            borderRadius="20px"
+            color="skyblue"
+
             size={{ base: "sm", sm: "sm", md: "md", lg: "md", xl: "md" }}
             colorScheme={"purple"}
+
           >
             Register
           </Button>
         </Link>
+
+
+      </HStack>
+
 
         <Box
           display={{
@@ -186,7 +197,7 @@ const Navbar = () => {
             </UnorderedList>
           </DrawerBody>
         </DrawerContent>
-      </Drawer>
+
     </Flex>
   );
 };

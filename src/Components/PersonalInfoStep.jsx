@@ -8,7 +8,7 @@ export const PersonalInfoStep = ({ userInfo, handleChange, onNext }) => {
                 <Text fontSize={"20px"} fontWeight={"bold"} color={"#283593"}>Personal Information</Text>
                 <FormControl isRequired m={"20px"}>
                     <FormLabel>Full Name</FormLabel>
-                    <Input type='text' placeholder='Full Name' name={"fullname"} value={userInfo.fullName} onChange={handleChange} />
+                    <Input type='text' placeholder='Full Name' name={"fullName"} value={userInfo.fullName} onChange={handleChange} />
                 </FormControl>
                 <FormControl isRequired m={"20px"}>
                     <FormLabel>Contact Number</FormLabel>
