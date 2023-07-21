@@ -1,17 +1,18 @@
-import axios from "axios";
-import { AUTH_ERROR, AUTH_REQUEST, AUTH_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS } from "./actionTypes";
+import axios from 'axios';
 
+import { AUTH_ERROR, AUTH_REQUEST, AUTH_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS } from "./actionTypes";
 
 
   export const signup = (formData) => async(dispatch) => {
 
       dispatch({ type: AUTH_REQUEST });
  
-        return axios.post('https://money-mentor.onrender.com//user',formData).then((res)=>{
+        return axios.post('https://money-mentor.onrender.com/LoginUsers',formData).then((res)=>{
         // console.log(res)
          dispatch({type:AUTH_SUCCESS, payload:res.data})
          return res.data
       }).catch((err) => {
+        // setSubmissiondisbled(false)
           dispatch({type:AUTH_ERROR, payload:err.message})
           // console.log(err.message);
       })
@@ -22,7 +23,7 @@ import { AUTH_ERROR, AUTH_REQUEST, AUTH_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS } 
   export const login = (loginData) => async(dispatch) => {
   
        dispatch({type:AUTH_REQUEST})
-       return  axios.get(`https://money-mentor.onrender.com//user`).then((res)=>{
+       return  axios.get(`https://money-mentor.onrender.com/LoginUsers`).then((res)=>{
             // console.log(res)
             res.data.map((el)=>{
               if(el.email == loginData.email && el.password == loginData.password){
@@ -34,3 +35,5 @@ import { AUTH_ERROR, AUTH_REQUEST, AUTH_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS } 
         dispatch({type:LOGIN_FAILURE})
       })
   }
+
+  
