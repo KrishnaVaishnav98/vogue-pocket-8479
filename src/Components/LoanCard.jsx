@@ -1,44 +1,58 @@
-import axios from "axios"
-import { Button, Text } from "@chakra-ui/react"
+import { Button, Center, Image, ListItem, UnorderedList } from '@chakra-ui/react'
+import { Box,Text } from '@chakra-ui/react'
 import { useEffect, useState } from "react"
 
-export const LoanCard=()=>{
-    const [data,setData]=useState([])
-useEffect(()=>{
-    axios
-    .get("https://money-mentor.onrender.com/Banks")
-    .then((res)=>{
-          
-        setData(res.data)
-    })
-},[])
+export const LoanCard=({image,name,amount,interest,category,extra})=>{
+
+    const [isDesktop, setDesktop] = useState(window.innerWidth > 1450);
+
+    const updateMedia = () => {
+      setDesktop(window.innerWidth > 650);
+    };
+  
+    useEffect(() => {
+      window.addEventListener("resize", updateMedia);
+      return () => window.removeEventListener("resize", updateMedia);
+    });
+  
+    return (
+      <div>
+        {isDesktop ? (
+          <div>
+                <Box boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"} margin={"10px"}  display={"flex"} textAlign={"center"}  justifyContent={"space-around"} alignItems={"center"} pt={"5px"} pb={"5px"}>
+            <Box w={"200px"}><Image src={image} alt={name}  /></Box>
+            
+            <Box w={"100px"}>Rs.{amount}</Box>
+         <Box w={"100px"}>{interest}%</Box>
+            <Box w={"300px"}><UnorderedList>{extra.map((el)=>(<ListItem >{el}</ListItem>))}</UnorderedList></Box>
+            <Box> Rs.{Math.ceil(amount/36)}</Box>
+            <Box>Rs. 2500</Box>
+            <Button>Apply</Button>
+        </Box>
+          </div>
+        ) : (
+          <div>
+            <Box boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"} margin={"10px"} textAlign={"center"}  justifyContent={"space-around"} alignItems={"center"}>
+            <Box display={"flex"} textAlign={"center"}  justifyContent={"space-around"} alignItems={"center"}>
+            <Box w={"200px"}><Image src={image} alt={name}  /></Box>
+            <Box mt={2} w={"100px"}><Text>Interest Rate</Text><Text fontSize={"15px"} fontWeight={"bold"}>{interest}%</Text></Box>
+            </Box>
+            <Box display={"flex"} textAlign={"center"}  justifyContent={"space-around"} alignItems={"center"}>
+            <Box mt={2} w={"100px"}><Text>Loan Amount</Text><Text fontSize={"15px"} fontWeight={"bold"}>Rs.{amount}</Text></Box>
+            <Box mt={2} w={"100px"}><Text>EMI</Text><Text fontSize={"15px"} fontWeight={"bold"}>Rs.{Math.ceil(amount/36)}</Text></Box>
+            <Button>Apply</Button>
+            </Box>
+            </Box>
+          </div>
+        )}
+      </div>
+    );
 
 
-
-    return (<div >
+    
        
-       { data.map((el)=>(
-       <div style={{boxShadow:"rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",margin:"10px",textAlign:"center",justifyContent:"space-around",display:"flex",alignItems:"center",flexWrap:"wrap"}}>
-        <img src={el.image} alt="" />
-       <h1 style={{width:"200px"}}>{el.interest}%</h1>
-       <p style={{width:"200px"}}>Rs. {el.amount}</p>
+        
        
-       <p style={{width:"200px"}}>Rs.{Math.ceil(el.amount/36)}</p>
-       <p style={{width:"200px"}} >{el.extra.map((el)=>(<li>{el}</li>))}</p>
-       {/* {el.extra.map((el)=>(<p>{el}</p>))} */}
-       
-       <Button
-
-            padding="5px 12px 5px 12px"
-            border={"1px solid skyblue"}
-            borderRadius="20px"
-            color="skyblue   "
-          >
-            Apply
-          </Button>
-       </div>
-       ))}
-
-       
-    </div>)
+    
 }
+

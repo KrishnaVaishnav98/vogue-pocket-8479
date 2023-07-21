@@ -3,7 +3,7 @@ import { Box, FormControl, FormLabel, Text, Input, Center, Button, HStack } from
 
 export const FinancialInfoStep = ({ userInfo, handleChange, onNext, onPrevious }) => {
     return (
-        <Center>
+        
             <Box w="600px" >
 
                 <Text fontSize={"20px"} fontWeight={"bold"} color={"#283593"}>Financial Information</Text>
@@ -35,6 +35,6 @@ export const FinancialInfoStep = ({ userInfo, handleChange, onNext, onPrevious }
                     <Button variant={'outline'} onClick={onNext} colorScheme='blue' >Next</Button>
                 </HStack>
             </Box>
-        </Center >
+       
     )
 }
