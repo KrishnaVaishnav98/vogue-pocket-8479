@@ -25,6 +25,7 @@ import Money_Mentor_logo from "../Images/Money_Mentor_logo.png";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 
+
 const links = [
   { title: "Home", path: "/" },
   { title: "Product", path: "/products" },
@@ -82,7 +83,6 @@ const Navbar = () => {
       >
         <Image src={Money_Mentor_logo} alt="logo" w="100%" />
       </Box>
-
       <HStack
         justify={"space-evenly"}
         spacing="30px"
@@ -100,7 +100,6 @@ const Navbar = () => {
           </NavLink>
         ))}
       </HStack>
-
       <HStack
         justify={"space-evenly"}
         spacing={{
@@ -114,24 +113,12 @@ const Navbar = () => {
         <Link to="/login">Login</Link>
         <Link to="/register" color="skyblue">
           <Button
-
-            padding="5px 12px 5px 12px"
-            border={"1px solid skyblue"}
-            borderRadius="20px"
-            color="skyblue"
-
             size={{ base: "sm", sm: "sm", md: "md", lg: "md", xl: "md" }}
-            colorScheme={"purple"}
-
+            colorScheme={"pink"}
           >
             Register
           </Button>
         </Link>
-
-
-      </HStack>
-
-
         <Box
           display={{
             base: "block",
@@ -164,14 +151,13 @@ const Navbar = () => {
               spacing="30px"
               mt="50px"
               fontSize={"18px"}
-             
             >
               <ListItem
                 color="white"
                 _hover={{ bgcolor: "white", fontweight: "bold" }}
                 onClick={onClose}
               >
-                <Link to="/" >Home</Link>
+                <Link to="/">Home</Link>
               </ListItem>
               <ListItem
                 color="white"
@@ -197,7 +183,7 @@ const Navbar = () => {
             </UnorderedList>
           </DrawerBody>
         </DrawerContent>
-
+      </Drawer>
     </Flex>
   );
 };
