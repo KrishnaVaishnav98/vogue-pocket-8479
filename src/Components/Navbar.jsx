@@ -111,12 +111,12 @@ const Navbar = () => {
         }}
       >
         <Link to="/login">Login</Link>
-        <Link to="/register" color="skyblue">
+        <Link to="/signup" >
           <Button
             size={{ base: "sm", sm: "sm", md: "md", lg: "md", xl: "md" }}
             colorScheme={"pink"}
           >
-            Register
+            Sign Up
           </Button>
         </Link>
         <Box

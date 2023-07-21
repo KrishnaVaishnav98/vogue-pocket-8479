@@ -10,6 +10,7 @@ import Application from '../Pages/Application'
 import Process from '../Pages/Process'
 
 import { Product } from '../Pages/Product'
+import { SignUp } from '../Pages/SignUp'
 
 
 const Main_Routes = () => {
@@ -17,10 +18,10 @@ const Main_Routes = () => {
     <div>
         <Routes>
             <Route path='/' element={<Homepage/>}/>
-            {/* <Route path='/login' element={<Login />}/> */}
+            <Route path='/login' element={<Login />}/>
             <Route path='/support' element={<Support />}/>
             <Route path='/company' element={<Company />}/>
-            <Route path='/register' element={<Register />}/>
+            <Route path='/signup' element={<SignUp />}/>
             <Route path='/verification' element={<Application/>}/>
 
             <Route path='/process' element={<Process/>}/>

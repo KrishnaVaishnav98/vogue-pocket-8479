@@ -6,6 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
 import { extendTheme } from "@chakra-ui/react";
+import { Provider } from "react-redux";
+import { store } from "./Redux/store";
 
 const breakpoints = {
   sm: "320px",
@@ -19,11 +21,13 @@ const theme = extendTheme({ breakpoints });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ChakraProvider>
-    <BrowserRouter theme={theme}>
-      <App />
-    </BrowserRouter>
-  </ChakraProvider>
+  <Provider store={store}>
+    <ChakraProvider>
+      <BrowserRouter theme={theme}>
+        <App />
+      </BrowserRouter>
+    </ChakraProvider>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
