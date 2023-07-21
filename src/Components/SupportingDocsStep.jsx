@@ -14,55 +14,68 @@ export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevi
     setFileNames((prevFileNames) => ({ ...prevFileNames, [name]: fileName }));
   };
 
+
+
   return (
     <Center>
-      <Box w="800px" >
+      <Box w={{ base: "300px", sm: "200px", md: "600px", lg: "600px", xl: "600px" }} >
 
         <Text fontSize={"20px"} fontWeight={"bold"} color={"#283593"}>Supporting Documents</Text>
 
         <FormControl isRequired m="20px">
           <FormLabel>Identification Proof</FormLabel>
-          <Input
-            type="file"
-            placeholder="Identification Proof"
-            name="identificationProof"
-            value=""
-            onChange={(e) => {
-              handleFileChange(e);
-              handleFileNameChange('identificationProof', e.target.files[0]?.name || '');
-            }}
-          />
-          {fileNames.identificationProof && <Text>{fileNames.identificationProof}</Text>}
+          <Box display={{ base: "block", sm: "block", md: "block", lg: "flex", xl: "flex" }}>
+            <Input
+              type={fileNames.identificationProof ? "text" : "file"}
+              placeholder="Identification Proof"
+              name="identificationProof"
+              value={fileNames.identificationProof}
+              onChange={(e) => {
+                handleFileChange(e);
+                handleFileNameChange('identificationProof', e.target.files[0]?.name || '');
+              }}
+            />
+            <Button variant={"outline"} colorScheme={"blue"} ml={"10px"}
+              onClick={() => handleFileNameChange('identificationProof', '')}
+            >Edit</Button>
+          </Box>
         </FormControl>
 
         <FormControl isRequired m="20px">
           <FormLabel>Income Proof</FormLabel>
-          <Input
-            type="file"
-            placeholder="Income Proof"
-            name="incomeProof"
-            value=""
-            onChange={(e) => {
-              handleFileChange(e);
-              handleFileNameChange('incomeProof', e.target.files[0]?.name || '');
-            }}
-          />
-          {fileNames.incomeProof && <Text>{fileNames.incomeProof}</Text>}
+          <Box display={{ base: "block", sm: "block", md: "block", lg: "flex", xl: "flex" }}>
+            <Input
+              type={fileNames.incomeProof ? "text" : "file"}
+              placeholder="Income Proof"
+              name="incomeProof"
+              value={fileNames.incomeProof}
+              onChange={(e) => {
+                handleFileChange(e);
+                handleFileNameChange('incomeProof', e.target.files[0]?.name || '');
+              }}
+            />
+            <Button variant={"outline"} colorScheme={"blue"} ml={"10px"}
+              onClick={() => handleFileNameChange('incomeProof', '')}
+            >Edit</Button>
+          </Box>
         </FormControl>
 
         <FormControl isRequired m="20px">
           <FormLabel>Address Proof</FormLabel>
-          <Input
-            type="file"
-            placeholder="Address Proof"
-            name="addressProof"
-            value=""
-            onChange={(e) => {
-              handleFileChange(e);
-              handleFileNameChange('addressProof', e.target.files[0]?.name || '');
-            }}
-          />
-          {fileNames.addressProof && <Text>{fileNames.addressProof}</Text>}
+          <Box display={{ base: "block", sm: "block", md: "block", lg: "flex", xl: "flex" }}>
+            <Input
+              type={fileNames.addressProof ? "text" : "file"}
+              placeholder="Address Proof"
+              name="addressProof"
+              value={fileNames.addressProof}
+              onChange={(e) => {
+                handleFileChange(e);
+                handleFileNameChange('addressProof', e.target.files[0]?.name || '');
+              }}
+            />
+            <Button variant={"outline"} colorScheme={"blue"} ml={"10px"}
+              onClick={() => handleFileNameChange('addressProof', '')}>Edit</Button>
+          </Box>
         </FormControl>
 
         <Text color={"red"} mb={"20px"} > </Text>
@@ -70,10 +83,10 @@ export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevi
 
         <OrderedList color={'red.600'} textAlign={'left'}  >
 
-          <HStack w="1000px" mb={"50px"} >
+          <Box display={{ base: "block", sm: "block", md: "block", lg: "flex", xl: "flex" }} w={{ base: "300px", sm: "250px", md: "800px", lg: "1000px", xl: "1000px" }} mb={"50px"} >
 
-            <ListItem w="250px" >Identification Proof:
-              <UnorderedList textAlign={'left'} color={'black'}>
+            <ListItem w="250px" mt={"20px"}>Identification Proof:
+              <UnorderedList textAlign={'left'} color={'black'} >
                 <ListItem >Aadhaar Card </ListItem>
                 <ListItem>Voter ID Card</ListItem>
                 <ListItem>PAN Card </ListItem>
@@ -99,7 +112,7 @@ export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevi
               </UnorderedList>
             </ListItem>
 
-          </HStack>
+          </Box>
 
         </OrderedList>
 
