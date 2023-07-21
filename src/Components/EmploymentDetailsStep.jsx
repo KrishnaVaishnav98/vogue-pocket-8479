@@ -4,7 +4,7 @@ import { Box, FormControl, FormLabel, Text, Input, Center, Button, HStack } from
 export const EmploymentDetailsStep = ({ userInfo, handleChange, onNext, onPrevious }) => {
     return (
         <Center>
-            <Box w="600px" >
+            <Box w={{ base: "300px", sm: "200px", md: "500px", lg: "600px", xl: "700px" }}>
 
                 <Text fontSize={"20px"} fontWeight={"bold"} color={"#283593"}>Employment Details</Text>
                 <FormControl isRequired m={"20px"}>

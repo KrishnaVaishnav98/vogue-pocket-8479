@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import { Box, Center, Stepper, Step, StepIndicator, StepStatus, StepIcon, StepNumber, StepTitle, StepDescription, StepSeparator, } from '@chakra-ui/react';
-import { useSteps } from '@chakra-ui/react';
 import { LoanSpecificationsStep } from './LoanSpecificationsStep';
 import { SupportingDocsStep } from './SupportingDocsStep';
 import { EmploymentDetailsStep } from './EmploymentDetailsStep';
 import { PersonalInfoStep } from './PersonalInfoStep';
 import { FinancialInfoStep } from './FinancialInfoStep';
+import axios from 'axios';
 
 export const BankApplicationMain = () => {
 
@@ -75,13 +75,20 @@ export const BankApplicationMain = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(userInfo)
+        axios.patch(`https://money-mentor.onrender.com/LoginUsers/1`, { loans: userInfo })
+            .then((res) => {
+                console.log(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
 
     return (
         <ChakraProvider>
 
-            <Box display={"flex"} mt="50px" ml="100px">
+            <Box display={{ base: "block", sm: "block", md: "flex", lg: "flex", xl: "flex", "2xl": "flex" }} mt="50px" ml={{ base: "50px", sm: "20px", md: "50px", lg: "100px", xl: "100px" }}>
                 <Stepper index={activeStep} orientation="vertical" height="400px" gap="0" colorScheme='green' >
                     {steps.map((step, index) => (
                         <Step key={index} w={"300px"}>
