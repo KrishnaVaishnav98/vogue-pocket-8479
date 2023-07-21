@@ -6,6 +6,7 @@ import Support from '../Pages/Support'
 import Homepage from '../Pages/Homepage'
 import Register from '../Pages/Homepage'
 import Application from '../Pages/Application'
+import Process from '../Pages/Process'
 
 const Main_Routes = () => {
   return (
@@ -17,6 +18,7 @@ const Main_Routes = () => {
             <Route path='/company' element={<Company />}/>
             <Route path='/register' element={<Register />}/>
             <Route path='/verification' element={<Application/>}/>
+            <Route path='/process' element={<Process/>}/>
         </Routes>
     </div>
   )
