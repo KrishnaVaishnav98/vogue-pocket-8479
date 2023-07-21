@@ -69,7 +69,7 @@ const Navbar = () => {
       position="sticky"
       top={0}
       zIndex="sticky"
-      transition="box-shadow white 0.2s"
+      transition="box-shadow 0.2s"
       boxShadow={shouldElevate ? "md" : "none"}
     >
       <Box
