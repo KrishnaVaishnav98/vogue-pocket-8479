@@ -101,7 +101,7 @@
 }
 .form-content img{
     width: 100%;
-    margin-bottom: 1.5rem ;
+    margin-top: 1.5rem ;
 }
 
 h2 {
@@ -136,12 +136,12 @@ input[type='number'] {
   background-color: #f9f9f9;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   animation: fadeIn 1s ease;
+  height: 40px;
 }
 
 .button-container {
   display: flex;
   justify-content: space-around;
-  margin-top: 2rem;
 }
 
 .button-container button {
@@ -184,11 +184,12 @@ input[type='number'] {
     animation: fadeIn 1s ease;
     appearance: none; /* Remove default arrow */
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     color: #333;
     position: relative;
     z-index: 1;
+    height: 50px;
   }
   
   /* Custom arrow icon for select elements */
@@ -232,6 +233,7 @@ input[type='number'] {
     color: #333;
     position: relative;
     z-index: 1;
+    height: 40px;
   }
   
   /* Custom calendar icon for date input */
@@ -266,3 +268,50 @@ input[type='number'] {
       display: none;
     }
   }
+
+  /* Tablet Version */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .image-section,
+  .form-section {
+    flex: 1;
+    max-width: 100%;
+  }
+
+  .form-content {
+    padding: 1rem;
+    max-width: 100%;
+  }
+}
+
+/* Mobile Phone Version */
+@media (max-width: 576px) {
+  .container {
+    display: block;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .image-section,
+  .form-section {
+    max-width: 100%;
+  }
+
+  .image-container img {
+    width: 100%;
+  }
+
+  .vl {
+    display: none;
+  }
+
+  .form-content {
+    padding: 1rem;
+    max-width: 100%;
+  }
+}
