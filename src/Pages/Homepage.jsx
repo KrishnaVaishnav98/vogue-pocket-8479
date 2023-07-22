@@ -479,7 +479,7 @@ const Homepage = () => {
 
       {/* part-5 Banks -------------------------------------------------------------------------------- */}
 
-      <Box mt="150px"  bgColor={"#eff7f9"} p="20px">
+      <Box mt="150px" placeItems={"center"} border="2px solid black" bgColor={"#eff7f9"} p="20px">
         <Heading color="black" data-aos="zoom-in-up">
           Money Mentor Cooperates With These Banks
         </Heading>
@@ -509,6 +509,7 @@ const Homepage = () => {
           placeItems="center"
           textAlign={"center"}
           gap="20px"
+          border="2px solid black"
         >
           <Box w="150px" borderRadius="20px" data-aos="zoom-in-up">
             <Image
