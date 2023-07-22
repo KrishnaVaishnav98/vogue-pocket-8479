@@ -120,7 +120,6 @@ export default function Application() {
           <div className={styles["form-content"]}>
             {currentPart === 1 && (
               <div>
-                <img src={offer} alt="" />
                 <form>
                   <div className={styles["form-group"]}>
                     <label>Your Name</label>
@@ -187,12 +186,12 @@ export default function Application() {
                     </button>
                   </div>
                 </form>
+                <img src={offer} alt="" />
               </div>
             )}
 
             {currentPart === 2 && (
               <div>
-                <img src={offer} alt="" />
                 <form>
                   <div className={styles["form-group"]}>
                     <label>Address</label>
@@ -271,6 +270,7 @@ export default function Application() {
                     </button>
                   </div>
                 </form>
+                <img src={offer} alt="" />
               </div>
             )}
           </div>
