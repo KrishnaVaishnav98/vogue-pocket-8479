@@ -18,9 +18,9 @@ export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevi
 
   return (
     <Center>
-      <Box w={{ base: "300px", sm: "200px", md: "600px", lg: "600px", xl: "600px" }} >
+      <Box w={{ base: "300px", sm: "200px", md: "600px", lg: "600px", xl: "600px" }}  >
 
-        <Text fontSize={"20px"} fontWeight={"bold"} color={"#283593"}>Supporting Documents</Text>
+        <Text mt={{ base: "50px", sm: "50px", lg: "0px", md: "0px", xl: "0px" }} fontSize={"20px"} fontWeight={"bold"} color={"#283593"}>Supporting Documents</Text>
 
         <FormControl isRequired m="20px">
           <FormLabel>Identification Proof</FormLabel>
@@ -85,7 +85,7 @@ export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevi
 
           <Box display={{ base: "block", sm: "block", md: "block", lg: "flex", xl: "flex" }} w={{ base: "300px", sm: "250px", md: "800px", lg: "1000px", xl: "1000px" }} mb={"50px"} >
 
-            <ListItem w="250px" mt={"20px"}>Identification Proof:
+            <ListItem w={{ base: "150px", sm: "150px", lg: "250px", md: "250px", xl: "250px" }} mt={"20px"}>Identification Proof:
               <UnorderedList textAlign={'left'} color={'black'} >
                 <ListItem >Aadhaar Card </ListItem>
                 <ListItem>Voter ID Card</ListItem>
@@ -94,7 +94,7 @@ export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevi
               </UnorderedList>
             </ListItem>
 
-            <ListItem w="250px" mt={"20px"}>Income Proof:
+            <ListItem w={{ base: "150px", sm: "150px", lg: "250px", md: "250px", xl: "250px" }} mt={"20px"}>Income Proof:
               <UnorderedList textAlign={'left'} color={'black'}>
                 <ListItem >Salary slips</ListItem>
                 <ListItem>Form 16 </ListItem>
@@ -103,7 +103,7 @@ export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevi
               </UnorderedList>
             </ListItem>
 
-            <ListItem w="450px" ml={"20px"} mt={"20px"}>Identification Proof:
+            <ListItem w={{ base: "150px", sm: "150px", lg: "450px", md: "450px", xl: "450px" }} ml={"20px"} mt={"20px"}>Identification Proof:
               <UnorderedList textAlign={'left'} color={'black'}>
                 <ListItem >Aadhaar Card </ListItem>
                 <ListItem>Driving License</ListItem>
