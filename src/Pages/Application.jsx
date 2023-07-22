@@ -15,6 +15,7 @@ export default function Application() {
     employment: "",
     income: "",
     creditscore: "",
+    category:""
   });
 
   const [currentPart, setCurrentPart] = useState(1);
@@ -32,11 +33,11 @@ export default function Application() {
   };
 
   const handleSubmitFormData = async (e) => {
-
+    
     try {
       // Make a PATCH request using axios
       const response = await axios.patch(
-        "https://money-mentor.onrender.com/LoginUsers/3",
+        "https://money-mentor.onrender.com/LoginUsers/1",
         formData
       );
       console.log(response.data);
@@ -58,35 +59,37 @@ export default function Application() {
         employment: "",
         income: "",
         creditscore: "",
+        category:"",
       });
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit=(e)=>{
     e.preventDefault();
-    if (formData.creditscore >= 650) {
-      handleSubmitFormData();
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'We are unable to forward your form at this time due to the low credit score.Your credit score is below 650. Please improve your credit score and try again.',
-      })
-      setFormData({
-        fullname: "",
-        email: "",
-        address: "",
-        contact: "",
-        gender: "",
-        dob: "",
-        employment: "",
-        income: "",
-        creditscore: "",
-      });
+    if(formData.creditscore>=650){
+        handleSubmitFormData();
+    }else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'We are unable to forward your form at this time due to the low credit score.Your credit score is below 650. Please improve your credit score and try again.',
+          })
+          setFormData({
+            fullname: "",
+            email: "",
+            address: "",
+            contact: "",
+            gender: "",
+            dob: "",
+            employment: "",
+            income: "",
+            creditscore: "",
+            category:"",
+          });
     }
-
+    
   }
 
   return (
@@ -166,6 +169,17 @@ export default function Application() {
                     />
                   </div>
 
+                  <div className="form-group">
+                    <label>Mobile Number</label>
+                    <input
+                      type="tel"
+                      name="contact"
+                      value={formData.contact}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
                   <div className="button-container">
                     <button type="button" onClick={handleNext}>
                       Next
@@ -180,17 +194,6 @@ export default function Application() {
                 <img src={offer} alt="" />
                 <form>
                   <div className="form-group">
-                    <label>Mobile Number</label>
-                    <input
-                      type="tel"
-                      name="contact"
-                      value={formData.contact}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-
-                  <div className="form-group">
                     <label>Address</label>
                     <input
                       type="text"
@@ -199,6 +202,22 @@ export default function Application() {
                       onChange={handleChange}
                       required
                     />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Category</label>
+                    <select
+                      name="category"
+                      value={formData.category}
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="">Select Category</option>
+                      <option value="homeloan">Home loan</option>
+                      <option value="educationloan">Education loan</option>
+                      <option value="personalloan">Personal loan</option>
+                      <option value="businessloan">Business loan</option>
+                    </select>
                   </div>
 
                   <div className="form-group">
@@ -246,7 +265,7 @@ export default function Application() {
                     <button type="button" onClick={handlePrev}>
                       Previous
                     </button>
-                    <button className={formData.creditscore === "" ? "disabled" : ""} disabled={formData.creditscore === ""} type="button" onClick={handleSubmit}>
+                    <button className={formData.creditscore===""?"disabled":""} disabled={formData.creditscore===""} type="button" onClick={handleSubmit}>
                       Submit
                     </button>
                   </div>
