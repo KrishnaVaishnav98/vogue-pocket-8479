@@ -112,16 +112,6 @@ export default function Application() {
               src="https://homefirstindia.com/app/uploads/2020/08/home-loan-terminology.jpg"
               alt="Image"
             />
-            {/* <div className="icon-container">
-              <img
-                src="https://static.pbcdn.in/term-cdn/images/images/insurer/kotak_logo.png"
-                alt="Loan Icon 1"
-              />
-              <img
-                src="https://static.pbcdn.in/term-cdn/images/images/insurer/ICICI_logo.png"
-                alt="Loan Icon 2"
-              />
-            </div> */}
           </div>
         </div>
 
