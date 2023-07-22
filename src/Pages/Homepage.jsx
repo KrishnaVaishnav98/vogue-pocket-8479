@@ -39,6 +39,9 @@ import styled, { keyframes } from "styled-components";
 import family_2 from "../Images/family_2.jpg";
 import family_1 from "../Images/family_1.jpg";
 import { BsFillCheckCircleFill } from "react-icons/bs";
+
+import {Link} from "react-router-dom";
+
 import article_1 from "../Images/article_1.png";
 import article_2 from "../Images/article_2.png";
 import article_3 from "../Images/article_3.png";
@@ -57,6 +60,7 @@ import indian_bank from "../Images/indian_bank.jpg";
 import indusind from "../Images/indusind.png";
 import karnataka_bank from "../Images/karnataka_bank.jpg";
 import kotak from "../Images/kotak.png";
+
 
 const steps = [
   { title: "Apply free of charge & without obligation", description: " " },
@@ -121,6 +125,7 @@ const Homepage = () => {
           >
             Compare Loans From Several Banks Find The Cheapest Loan
           </Heading>
+          <Link to='/verification'>
           <Button
             rightIcon={<GiReceiveMoney size="25px" />}
             colorScheme={"pink"}
@@ -129,6 +134,7 @@ const Homepage = () => {
           >
             Apply Now
           </Button>
+          </Link>
         </VStack>
 
         <Box

@@ -1,5 +1,5 @@
 import Main_Routes from './All_Routes/Main_Routes';
-import './App.css';
+
 
 import { LoanCard } from './Components/LoanCard';
 
