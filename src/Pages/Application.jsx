@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import "../CSS/Form.css";
+import styles from "../CSS/Form.module.css";
 import offer from "../Images/offer-removebg-preview.png";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useSelector } from 'react-redux';
+import {useNavigate} from "react-router-dom";
 
 export default function Application() {
     const {id}=useSelector((store)=>{
@@ -73,10 +74,13 @@ export default function Application() {
     }
   };
 
+  const navigate=useNavigate();
+
   const handleSubmit=(e)=>{
     e.preventDefault();
     if(formData.creditscore>=650){
         handleSubmitFormData();
+        navigate("/products");
     }else{
         Swal.fire({
             icon: 'error',
@@ -101,9 +105,9 @@ export default function Application() {
 
   return (
     <div>
-      <div className="container">
-        <div className="image-section">
-          <div className="image-container">
+      <div className={styles.container}>
+        <div className={styles["image-section"]}>
+          <div className={styles["image-container"]}>
             <img
               src="https://homefirstindia.com/app/uploads/2020/08/home-loan-terminology.jpg"
               alt="Image"
@@ -121,14 +125,14 @@ export default function Application() {
           </div>
         </div>
 
-        <div className="form-section">
-          <div className="vl"></div>
-          <div className="form-content">
+        <div className={styles["form-section"]}>
+        <div className={styles.vl}></div>
+          <div className={styles["form-content"]}>
             {currentPart === 1 && (
               <div>
                 <img src={offer} alt="" />
                 <form>
-                  <div className="form-group">
+                  <div className={styles["form-group"]}>
                     <label>Your Name</label>
                     <input
                       type="text"
@@ -139,7 +143,7 @@ export default function Application() {
                     />
                   </div>
 
-                  <div className="form-group">
+                  <div className={styles["form-group"]}>
                     <label>Email</label>
                     <input
                       type="email"
@@ -150,7 +154,7 @@ export default function Application() {
                     />
                   </div>
 
-                  <div className="form-group">
+                  <div className={styles["form-group"]}>
                     <label>Gender</label>
                     <select
                       name="gender"
@@ -165,7 +169,7 @@ export default function Application() {
                     </select>
                   </div>
 
-                  <div className="form-group">
+                  <div className={styles["form-group"]}>
                     <label>Date of Birth</label>
                     <input
                       type="date"
@@ -176,7 +180,7 @@ export default function Application() {
                     />
                   </div>
 
-                  <div className="form-group">
+                  <div className={styles["form-group"]}>
                     <label>Mobile Number</label>
                     <input
                       type="tel"
@@ -187,7 +191,7 @@ export default function Application() {
                     />
                   </div>
 
-                  <div className="button-container">
+                  <div className={styles["button-container"]}>
                     <button type="button" onClick={handleNext}>
                       Next
                     </button>
@@ -200,7 +204,7 @@ export default function Application() {
               <div>
                 <img src={offer} alt="" />
                 <form>
-                  <div className="form-group">
+                  <div className={styles["form-group"]}>
                     <label>Address</label>
                     <input
                       type="text"
@@ -211,7 +215,7 @@ export default function Application() {
                     />
                   </div>
 
-                  <div className="form-group">
+                  <div className={styles["form-group"]}>
                     <label>Category</label>
                     <select
                       name="category"
@@ -227,7 +231,7 @@ export default function Application() {
                     </select>
                   </div>
 
-                  <div className="form-group">
+                  <div className={styles["form-group"]}>
                     <label>Employment</label>
                     <select
                       name="employment"
@@ -242,7 +246,7 @@ export default function Application() {
                     </select>
                   </div>
 
-                  <div className="form-group">
+                  <div className={styles["form-group"]}>
                     <label>Income</label>
                     <select
                       name="income"
@@ -257,7 +261,7 @@ export default function Application() {
                     </select>
                   </div>
 
-                  <div className="form-group">
+                  <div className={styles["form-group"]}>
                     <label>Credit Score</label>
                     <input
                       type="number"
@@ -268,11 +272,11 @@ export default function Application() {
                     />
                   </div>
 
-                  <div className="button-container">
+                  <div className={styles["button-container"]}>
                     <button type="button" onClick={handlePrev}>
                       Previous
                     </button>
-                    <button className={formData.creditscore===""?"disabled":""} disabled={formData.creditscore===""} type="button" onClick={handleSubmit}>
+                    <button className={formData.creditscore===""?styles.disabled:""} disabled={formData.creditscore===""} type="button" onClick={handleSubmit}>
                       Submit
                     </button>
                   </div>
