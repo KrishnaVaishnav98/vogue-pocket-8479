@@ -32,11 +32,11 @@ export default function Application() {
   };
 
   const handleSubmitFormData = async (e) => {
-    
+
     try {
       // Make a PATCH request using axios
       const response = await axios.patch(
-        "https://money-mentor.onrender.com/LoginUsers/1",
+        "https://money-mentor.onrender.com/LoginUsers/3",
         formData
       );
       console.log(response.data);
@@ -64,29 +64,29 @@ export default function Application() {
     }
   };
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if(formData.creditscore>=650){
-        handleSubmitFormData();
-    }else{
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'We are unable to forward your form at this time due to the low credit score.Your credit score is below 650. Please improve your credit score and try again.',
-          })
-          setFormData({
-            fullname: "",
-            email: "",
-            address: "",
-            contact: "",
-            gender: "",
-            dob: "",
-            employment: "",
-            income: "",
-            creditscore: "",
-          });
+    if (formData.creditscore >= 650) {
+      handleSubmitFormData();
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'We are unable to forward your form at this time due to the low credit score.Your credit score is below 650. Please improve your credit score and try again.',
+      })
+      setFormData({
+        fullname: "",
+        email: "",
+        address: "",
+        contact: "",
+        gender: "",
+        dob: "",
+        employment: "",
+        income: "",
+        creditscore: "",
+      });
     }
-    
+
   }
 
   return (
@@ -246,7 +246,7 @@ export default function Application() {
                     <button type="button" onClick={handlePrev}>
                       Previous
                     </button>
-                    <button className={formData.creditscore===""?"disabled":""} disabled={formData.creditscore===""} type="button" onClick={handleSubmit}>
+                    <button className={formData.creditscore === "" ? "disabled" : ""} disabled={formData.creditscore === ""} type="button" onClick={handleSubmit}>
                       Submit
                     </button>
                   </div>
