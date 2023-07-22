@@ -11,6 +11,7 @@ import Process from '../Pages/Process'
 
 import { Product } from '../Pages/Product'
 import { SignUp } from '../Pages/SignUp'
+import { Profile } from '../Components/Profile'
 
 
 const Main_Routes = () => {
@@ -27,7 +28,7 @@ const Main_Routes = () => {
             <Route path='/process' element={<Process/>}/>
 
             <Route path='/products' element={<Product/>}/>
-
+            <Route path='/profile' element={<Profile/>}/>
         </Routes>
     </div>
   )

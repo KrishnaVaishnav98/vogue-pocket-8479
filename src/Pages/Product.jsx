@@ -5,20 +5,67 @@ import { useEffect, useState } from "react"
 import { LoanCard } from "../Components/LoanCard"
 
 import { SideBar } from "./SideBar"
+import { useDispatch, useSelector } from "react-redux"
+import { getProducts } from "../Redux/Product/action"
+import { useSearchParams } from "react-router-dom"
 
 
 
 
 export const Product=()=>{
-    const [data,setData]=useState([])
+
+
+  const dispatch=useDispatch()
+
+  const data=useSelector((store)=> 
+   store.productReducer.products
+   )
+   const userid=useSelector((store)=>
+   store.authReducer.currentUser.id
+   )
+  //search params 
+  const [searchparams,setSearchParams]=useSearchParams()
+  const intialCategory=searchparams.get("category")
+  const intialOrder=searchparams.get("order")
+  const [category,setCategory]=useState(intialCategory ||"")
+   const[order,setOrder]=useState(intialOrder || "")
+  
+ 
+   
+    
+    const fetchuser=()=>{
+      let paramsObj={
+        params:{
+            category : searchparams.get("catagory"),
+            _sort : searchparams.get("order") && "interest",
+            _order: searchparams.get("order"),
+            
+        }
+    }
+
+    axios
+    .get("https://money-mentor.onrender.com/LoginUsers")
+    .then((res)=>{
+      
+      const user=res.data.find((el)=>el.id==userid)
+      console.log(user)
+        // setCategory(user.category)
+      dispatch(getProducts(paramsObj))
+    })
+    }
+  
+
+ 
     useEffect(()=>{
-        axios
-        .get("https://money-mentor.onrender.com/Banks")
-        .then((res)=>{
-              
-            setData(res.data)
-        })
-    },[])
+      const params={
+       
+      }
+      category && (params.category=category)
+      order && (params.order=order)
+     setSearchParams(params)
+      fetchuser()
+      
+    },[order])
 // media query 
 const [isDesktop, setDesktop] = useState(window.innerWidth > 1450);
 
@@ -46,8 +93,8 @@ const [isDesktop, setDesktop] = useState(window.innerWidth > 1450);
 <Box> <NumberInput ml={7}>
 
 <NumberInputStepper>
-<NumberIncrementStepper  />
-<NumberDecrementStepper />
+<NumberIncrementStepper onClick={()=>setOrder("asc")} />
+<NumberDecrementStepper  onClick={()=>setOrder("desc")} />
 </NumberInputStepper>
 </NumberInput></Box>
 
@@ -59,15 +106,15 @@ const [isDesktop, setDesktop] = useState(window.innerWidth > 1450);
         <Box><Text fontSize={"15px"} fontWeight={"bold"}>EMI</Text></Box>
        <Box> <NumberInput ml={7}>
        
-       <NumberInputStepper>
-         <NumberIncrementStepper />
+       <NumberInputStepper  >
+         <NumberIncrementStepper  />
          <NumberDecrementStepper />
        </NumberInputStepper>
      </NumberInput></Box>
 
 
         </Box>
-        <Box fontSize={"15px"} fontWeight={"bold"}>Processing Fee</Box>
+        <Box fontSize={"15px"} fontWeight={"bold"}  >Processing Fee</Box>
         <Box fontSize={"15px"} fontWeight={"bold"}>Proceed</Box>
     </Box>
        
@@ -86,8 +133,8 @@ const [isDesktop, setDesktop] = useState(window.innerWidth > 1450);
 <Box> <NumberInput ml={7}>
 
 <NumberInputStepper>
-<NumberIncrementStepper  />
-<NumberDecrementStepper />
+<NumberIncrementStepper onClick={()=>setOrder("asc")} />
+<NumberDecrementStepper onClick={()=>setOrder("desc")} />
 </NumberInputStepper>
 </NumberInput></Box>
 
@@ -132,44 +179,3 @@ const [isDesktop, setDesktop] = useState(window.innerWidth > 1450);
 
 
 
-//     return(
-//         <div>
-           
-//             <Box   margin={"10px"}  display={"flex"} textAlign={"center"}  justifyContent={"space-around"} alignItems={"center"}>
-//             <Box w={"200px"}>Bank-Name</Box>
-           
-//             <Box w={"100px"}>Loan Amount</Box>
-//             <Box w={"100px"} display={"flex"} >
-
-// <Box><Text>Interest</Text></Box>
-// <Box> <NumberInput ml={7}>
-
-// <NumberInputStepper>
-//  <NumberIncrementStepper  />
-//  <NumberDecrementStepper />
-// </NumberInputStepper>
-// </NumberInput></Box>
-
-
-// </Box>
-//             <Box w={"300px"}>Prepayment Charges</Box>
-//             <Box display={"flex"} justifyContent={"space-around"}>
-
-//             <Box><Text>EMI</Text></Box>
-//            <Box> <NumberInput ml={7}>
-           
-//            <NumberInputStepper>
-//              <NumberIncrementStepper />
-//              <NumberDecrementStepper />
-//            </NumberInputStepper>
-//          </NumberInput></Box>
-  
-
-//             </Box>
-//             <Box>Processing Fee</Box>
-//             <Box>Proceed</Box>
-//         </Box>
-//            {data.map((el)=>(<LoanCard {...el} />))}
-//         </div>
-//     )
-// }
