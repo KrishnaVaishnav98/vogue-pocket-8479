@@ -29,9 +29,6 @@ import axios from 'axios';
 
 
 
-
-
-
 export function SignUp() {
 
   const navigate = useNavigate()
@@ -64,8 +61,6 @@ export function SignUp() {
         isClosable: true,
         position: "top"
       })
-
-
     }
 
     if (formvalue.password.length < 6) {

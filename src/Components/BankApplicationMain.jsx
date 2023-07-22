@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
-import { ChakraProvider } from '@chakra-ui/react'
-import { Box, Center, Stepper, Step, StepIndicator, StepStatus, StepIcon, StepNumber, StepTitle, StepDescription, StepSeparator, } from '@chakra-ui/react';
+import { ChakraProvider, useToast } from '@chakra-ui/react'
+import { Box, Center, Stepper, Step, StepIndicator, StepStatus, StepIcon, StepNumber, StepTitle, StepDescription, StepSeparator } from '@chakra-ui/react';
 import { LoanSpecificationsStep } from './LoanSpecificationsStep';
 import { SupportingDocsStep } from './SupportingDocsStep';
 import { EmploymentDetailsStep } from './EmploymentDetailsStep';
 import { PersonalInfoStep } from './PersonalInfoStep';
 import { FinancialInfoStep } from './FinancialInfoStep';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleLoanDataSubmit } from '../Redux/BankApplication/action';
 
 export const BankApplicationMain = () => {
 
+    const currentUser = useSelector(store => store.authReducer.currentUser);
+    const dispatch = useDispatch()
+    const toast = useToast();
 
     const initialUserInfo = {
-        fullName: '',
-        email: '',
-        contactNumber: '',
-        address: '',
+
         employer: '',
         jobTitle: '',
         yearsOfEmployment: '',
@@ -42,6 +43,7 @@ export const BankApplicationMain = () => {
     ]
     const [activeStep, setActiveStep] = useState(0);
     const [userInfo, setUserInfo] = useState(initialUserInfo);
+    const [alert, setAlert] = useState(false)
 
     const handleNextStep = () => {
         setActiveStep((prevStep) => prevStep + 1);
@@ -74,14 +76,29 @@ export const BankApplicationMain = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(userInfo)
-        axios.patch(`https://money-mentor.onrender.com/LoginUsers/1`, { loans: userInfo })
-            .then((res) => {
-                console.log(res.data)
+        if (!userInfo.employer || !userInfo.jobTitle || !userInfo.yearsOfEmployment || !userInfo.monthlyIncome || !userInfo.monthlyExpenses || !userInfo.savingsInvestments || !userInfo.outstandingLoansDebt || !userInfo.assets || !userInfo.identificationProof || !userInfo.incomeProof || !userInfo.addressProof || !userInfo.loanType || !userInfo.loanAmount || !userInfo.loanTerm || !userInfo.loanPurpose) {
+            return toast({
+                title: 'Submission Failed!',
+                description: "Please fill all form details before submiting. ",
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+                position: "top"
             })
-            .catch((err) => {
-                console.log(err)
+        }
+        else {
+            dispatch(handleLoanDataSubmit(currentUser.id, userInfo)).then(() => {
+                setUserInfo(initialUserInfo)
+                toast({
+                    title: 'Success',
+                    description: 'Application Request Successful',
+                    status: 'success',
+                    position: 'top',
+                    duration: 4000,
+                    isClosable: true,
+                })
             })
+        }
     }
 
 
@@ -89,6 +106,7 @@ export const BankApplicationMain = () => {
         <ChakraProvider>
 
             <Box display={{ base: "block", sm: "block", md: "flex", lg: "flex", xl: "flex", "2xl": "flex" }} mt="50px" ml={{ base: "50px", sm: "20px", md: "50px", lg: "100px", xl: "100px" }}>
+
                 <Stepper index={activeStep} orientation="vertical" height="400px" gap="0" colorScheme='green' >
                     {steps.map((step, index) => (
                         <Step key={index} w={"300px"}>
@@ -139,6 +157,7 @@ export const BankApplicationMain = () => {
                             ) :
                                 activeStep === 4 && (
                                     <LoanSpecificationsStep
+                                        alert={alert}
                                         userInfo={userInfo}
                                         handleChange={handleChange}
                                         onPrevious={handlePreviousStep}
