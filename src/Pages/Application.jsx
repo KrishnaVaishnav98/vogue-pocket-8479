@@ -3,8 +3,15 @@ import "../CSS/Form.css";
 import offer from "../Images/offer-removebg-preview.png";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useSelector } from 'react-redux';
 
 export default function Application() {
+    const {id}=useSelector((store)=>{
+        return{
+            id:store.authReducer.currentUser.id,
+        }
+    })
+    console.log(id);
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",

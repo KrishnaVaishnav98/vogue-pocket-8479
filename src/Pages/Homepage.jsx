@@ -32,6 +32,7 @@ import styled, { keyframes } from "styled-components";
 import family_2 from "../Images/family_2.jpg";
 import family_1 from "../Images/family_1.jpg";
 import { BsFillCheckCircleFill } from "react-icons/bs";
+import {Link} from "react-router-dom";
 
 const steps = [
   { title: "Apply free of charge & without obligation", description: " " },
@@ -95,6 +96,7 @@ const Homepage = () => {
           >
             Compare Loans From Several Banks Find The Cheapest Loan
           </Heading>
+          <Link to='/verification'>
           <Button
             rightIcon={<GiReceiveMoney size="25px" />}
             colorScheme={"pink"}
@@ -103,6 +105,7 @@ const Homepage = () => {
           >
             Apply Now
           </Button>
+          </Link>
         </VStack>
 
         <Box
