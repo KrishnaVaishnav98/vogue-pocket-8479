@@ -47,7 +47,7 @@ console.log("idii",id)
             <Box display={"flex"} textAlign={"center"}  justifyContent={"space-around"} alignItems={"center"}>
             <Box mt={2} w={"100px"}><Text>Loan Amount</Text><Text fontSize={"15px"} fontWeight={"bold"}>Rs.{amount}</Text></Box>
             <Box mt={2} w={"100px"}><Text>EMI</Text><Text fontSize={"15px"} fontWeight={"bold"}>Rs.{Math.ceil(amount/36)}</Text></Box>
-            <Button>Apply</Button>
+            <Link to={`/bankApplication?id=${dataTopass.id}`}>    <Button >Apply</Button></Link>
             </Box>
             </Box>
           </div>
