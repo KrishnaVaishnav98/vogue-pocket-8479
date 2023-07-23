@@ -1,4 +1,5 @@
 import Main_Routes from './All_Routes/Main_Routes';
+import Footer from './Components/Footer';
 
 
 import { LoanCard } from './Components/LoanCard';
@@ -14,6 +15,7 @@ function App() {
 
       <Navbar />
       <Main_Routes />
+      <Footer />
 
 
 

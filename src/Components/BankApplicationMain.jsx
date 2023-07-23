@@ -30,7 +30,7 @@ export const BankApplicationMain = () => {
 
 
     const initialUserInfo = {
-        fullname: currentUser?.fullname || '',
+        fullname: `${currentUser.firstname} ${currentUser.lastname}` || '',
         contact: currentUser?.contact || '',
         email: currentUser?.email || '',
         address: currentUser?.address || '',

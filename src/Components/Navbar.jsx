@@ -178,14 +178,6 @@ const Navbar = () => {
           </HStack>
         )
 
-        // <HStack spacing={"20px"}>
-        //   <Link>
-        //   <Button size={{base:"sm", sm:"sm", md:"sm", ld:"md", xl:"md"}}>Logout</Button>
-        //   </Link>
-
-        //   <Link to="/profile"><Avatar name={"Mohnish Vishwakarma"} size={{base:"sm", sm:"sm", md:"sm", ld:"sm", xl:"md"}} bg="pink.400" /></Link>
-
-        // </HStack>
       }
 
       <Drawer
@@ -240,7 +232,7 @@ const Navbar = () => {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-      <Link to="/profile">Profile</Link>
+     
     </Flex>
    
   );

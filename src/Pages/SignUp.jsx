@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import blackbgEar from '../Assets/black.jpg';
 import 'animate.css';
 import { color, useToast } from '@chakra-ui/react'
+import login_bg from '../Images/login_bg.jpg'
 import {
   Flex,
   Box,
@@ -121,7 +122,7 @@ export function SignUp() {
   return (
     <>
       <Box position={"relative"} style={{
-        backgroundImage: `url(${blackbgEar})`,
+        backgroundImage: `url(${login_bg})`,
         //  backgroundRepeat:"no-repeat",
         backgroundSize: "cover",
       }}>
@@ -142,15 +143,16 @@ export function SignUp() {
 
           <Flex
             style={{
-              backgroundImage: `url(${blackbgEar})`,
+              backgroundImage: `url(${login_bg})`,
               //  backgroundRepeat:"no-repeat",
               backgroundSize: "cover"
-
+             
             }}
 
 
             align={'center'}
-            justify={'center'}
+            justify={'left'}
+            p="50px"
             bg={useColorModeValue('gray.50', 'gray.800')}>
             <Stack borderRadius={"none"} className="animate__animated animate__pulse" w={{ base: "90%", sm: "90%", md: "80%", lg: "50%", xl: "40%", "2xl": "40%" }} >
               <Stack align={'center'}>

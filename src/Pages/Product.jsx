@@ -9,6 +9,7 @@ import { useSelector } from "react-redux"
 import axios from "axios"
 export const Product=()=>{
 
+  const user=useSelector((store)=> store.authReducer.currentUser.id)
   const data=useSelector((store)=>
 
   store.productReducer.products)
@@ -27,7 +28,6 @@ const fetchuser=()=>{
   })
 }
 fetchuser()
-const user=useSelector((store)=> store.authReducer.currentUser.id)
 
 const [order, setOrder] = useState(initialOrder || "")
 

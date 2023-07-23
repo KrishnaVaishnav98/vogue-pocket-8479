@@ -22,6 +22,7 @@ import {
 import { ArrowForwardIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../Redux/Authentication/action';
+import login_bg from '../Images/login_bg.jpg'
 
 
 
@@ -78,7 +79,7 @@ import { login } from '../Redux/Authentication/action';
  
   return (
    <>
-   <Box  position={"relative"}  style={{backgroundImage:`url(${blackbgEar})`, 
+   <Box    style={{backgroundImage:`url(${login_bg})`, 
   //  backgroundRepeat:"no-repeat",
      backgroundSize:"cover",}}>
   
@@ -97,7 +98,7 @@ import { login } from '../Redux/Authentication/action';
   
    
     <Flex
-    style={{backgroundImage:`url(${blackbgEar})`, 
+    style={{backgroundImage:`url(${login_bg})`, 
     //  backgroundRepeat:"no-repeat",
        backgroundSize:"cover"
       
@@ -105,7 +106,8 @@ import { login } from '../Redux/Authentication/action';
     
       
       align={'center'}
-      justify={'center'}
+      justify={'left'}
+     p="50px"
       bg={useColorModeValue('gray.50', 'gray.800')}>
       <Stack  borderRadius={"none"}  className="animate__animated animate__pulse" w={{base:"90%",sm:"90%",md:"80%",lg:"50%",xl:"40%","2xl":"40%"}} >
         <Stack  align={'center'}>

@@ -24,7 +24,7 @@ export const EmploymentDetailsStep = ({ userInfo, handleChange, onNext, onPrevio
 
                 <FormControl isRequired m={{ base: "5px", sm: "10px", md: "20px", lg: "20px", xl: "30px" }}>
                     <FormLabel>Monthly Income</FormLabel>
-                    <Input type='text' placeholder='Monthly Income' name={"monthlyIncome"} value={userInfo.monthlyIncome} onChange={handleChange} />
+                    <Input type='number' placeholder='Monthly Income' name={"monthlyIncome"} value={userInfo.monthlyIncome} onChange={handleChange} />
                 </FormControl>
 
                 <HStack display={"flex"} justifyContent={"space-around"}>

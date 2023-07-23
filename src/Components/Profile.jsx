@@ -28,7 +28,7 @@ export const Profile=()=>{
             <img style={{ width: "70%",paddingRight:"50px",paddingLeft:"10%" }} src="https://img.freepik.com/premium-vector/man-profile-cartoon_18591-58482.jpg?w=740" alt="" />
             </div>
             <div style={{marginLeft:"10%",paddingBottom:"10px"}}>
-                <h3> <label style={{color:"#07051f"}}>Name :  </label> {data.fullname} {data.lastname}</h3>
+                <h3> <label style={{color:"#07051f"}}>Name :  </label> {data.firstname} {data.lastname}</h3>
                 <h5> <label style={{color:"#07051f"}}>Birth :  </label> {data.dob}</h5>
                 <h5> <label style={{color:"#07051f"}}>Phone :  </label> {data.contact}</h5>
                 <h5> <label style={{color:"#07051f"}}>Email :  </label> {data.email}</h5>
