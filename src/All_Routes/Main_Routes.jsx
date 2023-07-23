@@ -13,7 +13,7 @@ import { SignUp } from '../Pages/SignUp'
 import { BankApplication } from '../Pages/BankApplication'
 import { Admin } from '../Pages/Admin'
 import { Profile } from '../Components/Profile'
-
+import { PrivateRoute } from './PrivateRoute'
 
 
 const Main_Routes = () => {
@@ -21,18 +21,19 @@ const Main_Routes = () => {
     <div>
 
       <Routes>
+
         <Route path='/' element={<Homepage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/support' element={<Support />} />
-        
+
         <Route path='/signup' element={<SignUp />} />
-        <Route path='/verification' element={<Application />} />
+        <Route path='/verification' element={<PrivateRoute><Application /></PrivateRoute>} />
 
         <Route path='/process' element={<Process />} />
-        <Route path='/profile' element={<Profile/>}/>
-        <Route path='/products' element={<Product />} />
-        <Route path='/bankApplication' element={<BankApplication />} />
-        <Route path='/admin' element={<Admin />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/products' element={<PrivateRoute><Product /></PrivateRoute>} />
+        <Route path='/bankApplication' element={<PrivateRoute><BankApplication /></PrivateRoute>} />
+        <Route path='/admin' element={<PrivateRoute><Admin /></PrivateRoute>} />
       </Routes>
     </div >
 
