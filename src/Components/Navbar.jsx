@@ -29,7 +29,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 const links = [
   { title: "Home", path: "/" },
   { title: "Product", path: "/products" },
-  { title: "Company", path: "/company" },
+  { title: "Company", path: "/process" },
   { title: "Support", path: "/support" },
 ];
 const Navbar = () => {
@@ -184,7 +184,9 @@ const Navbar = () => {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
+      <Link to="/profile">Profile</Link>
     </Flex>
+   
   );
 };
 
