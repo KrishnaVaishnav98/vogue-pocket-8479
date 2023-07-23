@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ChakraProvider, useToast } from '@chakra-ui/react'
 import { Box, Center, Stepper, Step, StepIndicator, StepStatus, StepIcon, StepNumber, StepTitle, StepDescription, StepSeparator } from '@chakra-ui/react';
 import { LoanSpecificationsStep } from './LoanSpecificationsStep';
@@ -7,21 +7,32 @@ import { EmploymentDetailsStep } from './EmploymentDetailsStep';
 import { PersonalInfoStep } from './PersonalInfoStep';
 import { FinancialInfoStep } from './FinancialInfoStep';
 import { useDispatch, useSelector } from 'react-redux';
-import { handleLoanDataSubmit } from '../Redux/BankApplication/action';
+import { getBankData, getLoanData, handleLoanDataSubmit } from '../Redux/BankApplication/action';
 import { useLocation } from 'react-router-dom';
 
 export const BankApplicationMain = () => {
 
     const currentUser = useSelector(store => store.authReducer.currentUser);
+    const bankData = useSelector(store => store.bankApplicationReducer.bankData);
+    const loans = useSelector(store => store.bankApplicationReducer.loans);
     const dispatch = useDispatch()
     const toast = useToast();
-   const location=useLocation()
-   const id=new URLSearchParams(location.search).get('id')
-  
-   console.log("id",id)
-   
-   const initialUserInfo = {
+    const location = useLocation()
+    const id = new URLSearchParams(location.search).get('id')
 
+    console.log("id", id)
+
+    useEffect(() => {
+        dispatch(getBankData(id))
+        dispatch(getLoanData(currentUser.id))
+    }, [])
+
+
+    const initialUserInfo = {
+        fullname: currentUser?.fullname || '',
+        contact: currentUser?.contact || '',
+        email: currentUser?.email || '',
+        address: currentUser?.address || '',
         employer: '',
         jobTitle: '',
         yearsOfEmployment: '',
@@ -30,13 +41,15 @@ export const BankApplicationMain = () => {
         savingsInvestments: '',
         outstandingLoansDebt: '',
         assets: '',
-        identificationProof: '',
-        incomeProof: '',
-        addressProof: '',
-        loanType: '',
+        // identificationProof: '',
+        // incomeProof: '',
+        // addressProof: '',
+        loanType: bankData?.category || "",
         loanAmount: '',
         loanTerm: '',
         loanPurpose: '',
+        bankname: bankData?.name || '',
+        status: 'pending'
     };
 
     const steps = [
@@ -81,7 +94,7 @@ export const BankApplicationMain = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (!userInfo.employer || !userInfo.jobTitle || !userInfo.yearsOfEmployment || !userInfo.monthlyIncome || !userInfo.monthlyExpenses || !userInfo.savingsInvestments || !userInfo.outstandingLoansDebt || !userInfo.assets || !userInfo.identificationProof || !userInfo.incomeProof || !userInfo.addressProof || !userInfo.loanType || !userInfo.loanAmount || !userInfo.loanTerm || !userInfo.loanPurpose) {
+        if (!userInfo.employer || !userInfo.jobTitle || !userInfo.yearsOfEmployment || !userInfo.monthlyIncome || !userInfo.monthlyExpenses || !userInfo.savingsInvestments || !userInfo.outstandingLoansDebt || !userInfo.assets || !userInfo.loanType || !userInfo.loanAmount || !userInfo.loanTerm || !userInfo.loanPurpose) {
             return toast({
                 title: 'Submission Failed!',
                 description: "Please fill all form details before submiting. ",
@@ -92,8 +105,7 @@ export const BankApplicationMain = () => {
             })
         }
         else {
-            dispatch(handleLoanDataSubmit(currentUser.id, userInfo)).then(() => {
-                
+            dispatch(handleLoanDataSubmit(currentUser.id, [...loans, userInfo])).then(() => {
                 setUserInfo(initialUserInfo)
                 toast({
                     title: 'Success',
@@ -109,9 +121,14 @@ export const BankApplicationMain = () => {
 
 
     return (
-        <ChakraProvider>
 
-            <Box display={{ base: "block", sm: "block", md: "flex", lg: "flex", xl: "flex", "2xl": "flex" }} mt="50px" ml={{ base: "50px", sm: "20px", md: "50px", lg: "100px", xl: "100px" }}>
+
+        <Box display={{ base: "block", sm: "block", md: "flex", lg: "flex", xl: "flex", "2xl": "flex" }} mt="50px" ml={{ base: "50px", sm: "20px", md: "50px", lg: "100px", xl: "100px" }}>
+
+            <Box w={{ base: "200px", sm: "200px", md: "300px", lg: "300px", lg: "300px", xl: "300px" }}>
+                <Box mb="20px" >
+                    <img src={bankData.image} alt={bankData.name} />
+                </Box>
 
                 <Stepper index={activeStep} orientation="vertical" height="400px" gap="0" colorScheme='green' >
                     {steps.map((step, index) => (
@@ -134,6 +151,8 @@ export const BankApplicationMain = () => {
                         </Step>
                     ))}
                 </Stepper>
+            </Box>
+            <Box mt={"20px"} ml={{ base: "10px", sm: "10px", md: "20px", lg: "100px", xl: "100px" }}>
 
                 {activeStep === 0 ? (
                     <PersonalInfoStep
@@ -158,6 +177,7 @@ export const BankApplicationMain = () => {
                                 <SupportingDocsStep
                                     userInfo={userInfo}
                                     handleFileChange={handleFileChange}
+                                    handleChange={handleChange}
                                     onNext={handleNextStep} onPrevious={handlePreviousStep}
                                 />
                             ) :
@@ -171,9 +191,10 @@ export const BankApplicationMain = () => {
                                     />
                                 )}
 
-            </Box >
+            </Box>
+        </Box >
 
-        </ChakraProvider >
+
 
     )
 }
