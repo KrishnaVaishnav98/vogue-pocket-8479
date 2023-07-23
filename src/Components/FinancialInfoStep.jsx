@@ -28,7 +28,7 @@ export const FinancialInfoStep = ({ userInfo, handleChange, onNext, onPrevious }
                 <Input type='text' placeholder='for example: Car - 2018 Honda Civic (owned)' name={"assets"} value={userInfo.assets} onChange={handleChange} />
             </FormControl>
 
-            <Text color={"red"} mb={"20px"} >*note:  fill NA if not applicable</Text>
+            <Text color={"red"} ml={"20px"} mb={"20px"} >*note:  fill NA if not applicable</Text>
 
             <HStack display={"flex"} justifyContent={"space-around"}>
                 <Button variant={'outline'} onClick={onPrevious} colorScheme='blue' >Prev</Button>

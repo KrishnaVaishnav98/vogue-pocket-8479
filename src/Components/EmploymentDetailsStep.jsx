@@ -6,7 +6,7 @@ export const EmploymentDetailsStep = ({ userInfo, handleChange, onNext, onPrevio
         <Center>
             <Box w={{ base: "250px", sm: "200px", md: "500px", lg: "600px", xl: "700px" }}>
 
-                <Text mt={{ base: "50px", sm: "50px", lg: "0px", md: "0px", xl: "0px" }} fontSize={"20px"} fontWeight={"bold"} color={"#283593"}>Employment Details</Text>
+                <Text fontSize={"20px"} fontWeight={"bold"} color={"#283593"}>Employment Details</Text>
                 <FormControl isRequired m={{ base: "5px", sm: "10px", md: "20px", lg: "20px", xl: "30px" }}>
                     <FormLabel>Employer</FormLabel>
                     <Input type='text' placeholder='Employer' name={"employer"} value={userInfo.employer} onChange={handleChange} />

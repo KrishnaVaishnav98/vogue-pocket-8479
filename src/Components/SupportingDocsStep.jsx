@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Box, HStack, FormControl, FormLabel, Text, Input, Center, Button, UnorderedList, ListItem, OrderedList } from '@chakra-ui/react';
 
-export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevious }) => {
+export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevious, handleChange }) => {
 
   const [fileNames, setFileNames] = useState({
     identificationProof: '',
@@ -18,7 +18,7 @@ export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevi
 
   return (
     <Center>
-      <Box w={{ base: "300px", sm: "200px", md: "600px", lg: "600px", xl: "600px" }}  >
+      <Box w={{ base: "200px", sm: "150px", md: "300px", lg: "420px", xl: "700px" }}  >
 
         <Text mt={{ base: "50px", sm: "50px", lg: "0px", md: "0px", xl: "0px" }} fontSize={"20px"} fontWeight={"bold"} color={"#283593"}>Supporting Documents</Text>
 
@@ -34,6 +34,7 @@ export const SupportingDocsStep = ({ userInfo, handleFileChange, onNext, onPrevi
                 handleFileChange(e);
                 handleFileNameChange('identificationProof', e.target.files[0]?.name || '');
               }}
+
             />
             <Button variant={"outline"} colorScheme={"blue"} ml={"10px"}
               onClick={() => handleFileNameChange('identificationProof', '')}

@@ -13,17 +13,17 @@ export const LoanSpecificationsStep = ({ alert, userInfo, handleChange, handleSu
                         Please fill all form details before submitting !!!
                     </Alert> : ""}
                 </Box>
-                <Box w={{ base: "200px", sm: "200px", md: "500px", lg: "600px", xl: "700px" }} mr={{ base: "20px", sm: "20px", md: "0px", lg: "0px", xl: "0px" }} >
+                <Box w={{ base: "200px", sm: "200px", md: "500px", lg: "600px", xl: "700px" }} >
 
                     <Text mt={{ base: "50px", sm: "50px", lg: "0px", md: "0px", xl: "0px" }} fontSize={"20px"} fontWeight={"bold"} color={"#283593"}>Loan Specifications</Text>
 
                     <FormControl isRequired m={"20px"}>
                         <FormLabel>Loan Type</FormLabel>
                         <Select placeholder=' Select Loan Type' name={"loanType"} value={userInfo.loanType} onChange={handleChange} >
-                            <option value='personalLoan'>Personal Loan</option>
-                            <option value='homeLoan'>Home Loan</option>
-                            <option value='educationLoan'>Education Loan</option>
-                            <option value='businessLoan'>Business Loan</option>
+                            <option value='personalloan'>Personal Loan</option>
+                            <option value='homeloan'>Home Loan</option>
+                            <option value='educationloan'>Education Loan</option>
+                            <option value='businessloan'>Business Loan</option>
                         </Select>
                     </FormControl>
 
