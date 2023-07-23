@@ -189,7 +189,7 @@ import login_bg from '../Images/login_bg.jpg'
                 Not registered? <Link href="/signup" color={'rgb(255,189,89)'} fontWeight={"600"} >Signup</Link>
               </Text>
               <Text align={'center'}>
-               <Link href="/adminlogin" color={'rgb(255,189,89)'} fontWeight={"600"} > Admin Login <ArrowForwardIcon  /> </Link>
+               <Link href="/admin" color={'rgb(255,189,89)'} fontWeight={"600"} > Admin Login <ArrowForwardIcon  /> </Link>
               </Text>
             </Stack>
           </Stack>

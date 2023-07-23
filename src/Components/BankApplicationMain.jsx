@@ -30,6 +30,7 @@ export const BankApplicationMain = () => {
 
 
     const initialUserInfo = {
+        id:`${Math.floor(Math.random() * (100 - 1 + 1)) + 1}`,
         fullname: `${currentUser.firstname} ${currentUser.lastname}` || '',
         contact: currentUser?.contact || '',
         email: currentUser?.email || '',
