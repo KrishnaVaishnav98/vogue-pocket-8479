@@ -8,7 +8,7 @@ const initialState = {
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
-console.log(state)
+
     switch (type) {
         case PRODUCT_REQUEST:
             return { ...state, isLoading: true }

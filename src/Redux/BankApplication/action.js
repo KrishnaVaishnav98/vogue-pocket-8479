@@ -7,7 +7,7 @@ export const handleLoanDataSubmit = (id, loanData) => (dispatch) => {
     return axios.patch(`https://money-mentor.onrender.com/LoginUsers/${id}`, { loans: loanData })
         .then((res) => {
             dispatch({ type: LOAN_DATA_SUCCESS, payload: res.data.loans })
-            // console.log(res.data.loans)
+            console.log(res.data.loans)
         })
         .catch((err) => {
             dispatch({ type: LOAN_DATA_ERROR })

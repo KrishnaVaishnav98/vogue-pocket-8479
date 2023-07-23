@@ -8,14 +8,19 @@ import { PersonalInfoStep } from './PersonalInfoStep';
 import { FinancialInfoStep } from './FinancialInfoStep';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleLoanDataSubmit } from '../Redux/BankApplication/action';
+import { useLocation } from 'react-router-dom';
 
 export const BankApplicationMain = () => {
 
     const currentUser = useSelector(store => store.authReducer.currentUser);
     const dispatch = useDispatch()
     const toast = useToast();
-
-    const initialUserInfo = {
+   const location=useLocation()
+   const id=new URLSearchParams(location.search).get('id')
+  
+   console.log("id",id)
+   
+   const initialUserInfo = {
 
         employer: '',
         jobTitle: '',
@@ -88,6 +93,7 @@ export const BankApplicationMain = () => {
         }
         else {
             dispatch(handleLoanDataSubmit(currentUser.id, userInfo)).then(() => {
+                
                 setUserInfo(initialUserInfo)
                 toast({
                     title: 'Success',
