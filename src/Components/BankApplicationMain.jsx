@@ -8,7 +8,9 @@ import { PersonalInfoStep } from './PersonalInfoStep';
 import { FinancialInfoStep } from './FinancialInfoStep';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBankData, getLoanData, handleLoanDataSubmit } from '../Redux/BankApplication/action';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 export const BankApplicationMain = () => {
 
@@ -20,7 +22,6 @@ export const BankApplicationMain = () => {
     const location = useLocation()
     const id = new URLSearchParams(location.search).get('id')
 
-    console.log("id", id)
 
     useEffect(() => {
         dispatch(getBankData(id))
@@ -62,6 +63,7 @@ export const BankApplicationMain = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [userInfo, setUserInfo] = useState(initialUserInfo);
     const [alert, setAlert] = useState(false)
+    const navigate = useNavigate()
 
     const handleNextStep = () => {
         setActiveStep((prevStep) => prevStep + 1);
@@ -105,16 +107,25 @@ export const BankApplicationMain = () => {
             })
         }
         else {
-            dispatch(handleLoanDataSubmit(currentUser.id, [...loans, userInfo])).then(() => {
+            dispatch(handleLoanDataSubmit(currentUser.id, loans, userInfo)).then(() => {
                 setUserInfo(initialUserInfo)
-                toast({
-                    title: 'Success',
-                    description: 'Application Request Successful',
-                    status: 'success',
-                    position: 'top',
-                    duration: 4000,
-                    isClosable: true,
+                // toast({
+                //     title: 'Success',
+                //     description: 'Application Request Successful',
+                //     status: 'success',
+                //     position: 'top',
+                //     duration: 4000,
+                //     isClosable: true,
+                // })
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Your loan application has been submitted successfully.',
+                    showConfirmButton: false,
+                    timer: 5000,
                 })
+                navigate("/profile")
+
             })
         }
     }

@@ -1,10 +1,10 @@
 import axios from "axios"
 import { ALL_USER_ERROR, ALL_USER_REQUEST, ALL_USER_SUCCESS, BANK_DATA_ERROR, BANK_DATA_REQUEST, BANK_DATA_SUCCESS, GET_LOAN_DATA_ERROR, GET_LOAN_DATA_REQUEST, GET_LOAN_DATA_SUCCESS, LOAN_DATA_ERROR, LOAN_DATA_REQUEST, LOAN_DATA_SUCCESS } from "./actionTypes"
 
-export const handleLoanDataSubmit = (id, loanData) => (dispatch) => {
+export const handleLoanDataSubmit = (id, loans, userInfo) => (dispatch) => {
 
     dispatch({ type: LOAN_DATA_REQUEST })
-    return axios.patch(`https://money-mentor.onrender.com/LoginUsers/${id}`, { loans: loanData })
+    return axios.patch(`https://money-mentor.onrender.com/LoginUsers/${id}`, { loans: [...loans, userInfo] })
         .then((res) => {
             dispatch({ type: LOAN_DATA_SUCCESS, payload: res.data.loans })
             console.log(res.data.loans)
@@ -20,7 +20,7 @@ export const getLoanData = (id) => (dispatch) => {
     return axios.get(`https://money-mentor.onrender.com/LoginUsers/${id}`)
         .then((res) => {
             dispatch({ type: GET_LOAN_DATA_SUCCESS, payload: res.data.loans })
-            console.log(res.data.loans)
+            console.log("here", res.data.loans)
         })
         .catch((err) => {
             dispatch({ type: GET_LOAN_DATA_ERROR })
