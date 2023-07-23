@@ -25,7 +25,7 @@ export const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 isLoading: false,
-                loans: [...state.loans, payload]
+                loans: payload
             }
         }
         case LOAN_DATA_ERROR: {
@@ -46,7 +46,7 @@ export const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 isLoading: false,
-                loans: [payload]
+                loans: payload
             }
         }
         case GET_LOAN_DATA_ERROR: {

@@ -4,15 +4,15 @@ import offer from "../Images/offer-removebg-preview.png";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useSelector } from 'react-redux';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Application() {
-    const {id}=useSelector((store)=>{
-        return{
-            id:store.authReducer.currentUser.id,
-        }
-    })
-    console.log(id);
+  const { id } = useSelector((store) => {
+    return {
+      id: store.authReducer.currentUser.id,
+    }
+  })
+  console.log("======", id);
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
@@ -23,7 +23,7 @@ export default function Application() {
     employment: "",
     income: "",
     creditscore: "",
-    category:""
+    category: ""
   });
 
   const [currentPart, setCurrentPart] = useState(1);
@@ -41,11 +41,11 @@ export default function Application() {
   };
 
   const handleSubmitFormData = async (e) => {
-    
+
     try {
       // Make a PATCH request using axios
       const response = await axios.patch(
-        "https://money-mentor.onrender.com/LoginUsers/1",
+        `https://money-mentor.onrender.com/LoginUsers/${id}`,
         formData
       );
       console.log(response.data);
@@ -67,40 +67,40 @@ export default function Application() {
         employment: "",
         income: "",
         creditscore: "",
-        category:"",
+        category: "",
       });
     } catch (error) {
       console.error(error);
     }
   };
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if(formData.creditscore>=650){
-        handleSubmitFormData();
-        navigate("/products");
-    }else{
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'We are unable to forward your form at this time due to the low credit score.Your credit score is below 650. Please improve your credit score and try again.',
-          })
-          setFormData({
-            fullname: "",
-            email: "",
-            address: "",
-            contact: "",
-            gender: "",
-            dob: "",
-            employment: "",
-            income: "",
-            creditscore: "",
-            category:"",
-          });
+    if (formData.creditscore >= 650) {
+      handleSubmitFormData();
+      navigate("/products");
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'We are unable to forward your form at this time due to the low credit score.Your credit score is below 650. Please improve your credit score and try again.',
+      })
+      setFormData({
+        fullname: "",
+        email: "",
+        address: "",
+        contact: "",
+        gender: "",
+        dob: "",
+        employment: "",
+        income: "",
+        creditscore: "",
+        category: "",
+      });
     }
-    
+
   }
 
   return (
@@ -116,7 +116,7 @@ export default function Application() {
         </div>
 
         <div className={styles["form-section"]}>
-        <div className={styles.vl}></div>
+          <div className={styles.vl}></div>
           <div className={styles["form-content"]}>
             {currentPart === 1 && (
               <div>
@@ -265,7 +265,7 @@ export default function Application() {
                     <button type="button" onClick={handlePrev}>
                       Previous
                     </button>
-                    <button className={formData.creditscore===""?styles.disabled:""} disabled={formData.creditscore===""} type="button" onClick={handleSubmit}>
+                    <button className={formData.creditscore === "" ? styles.disabled : ""} disabled={formData.creditscore === ""} type="button" onClick={handleSubmit}>
                       Submit
                     </button>
                   </div>
