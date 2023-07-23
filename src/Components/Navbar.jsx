@@ -18,12 +18,23 @@ import {
   ListIcon,
   OrderedList,
   UnorderedList,
+  Avatar,
+  Menu,
+  MenuItem,
+  MenuButton,
+  MenuList,
+  Spacer,
 } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Money_Mentor_logo from "../Images/Money_Mentor_logo.png";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useDispatch, useSelector } from "react-redux";
+import { store } from "../Redux/store";
+import { LOGIN_REQUEST } from "../Redux/Authentication/actionTypes";
+import { FaSignOutAlt } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 
 
 const links = [
@@ -35,6 +46,11 @@ const links = [
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
+  const dispatch = useDispatch();
+  const isAuth = useSelector((store) => store.authReducer.isAuth);
+  const currentUser = useSelector((store) => store.authReducer.currentUser);
+
+  console.log(currentUser)
 
   const [shouldElevate, setShouldElevate] = useState(false);
 
@@ -81,7 +97,7 @@ const Navbar = () => {
           xl: "180px",
         }}
       >
-        <Image src={Money_Mentor_logo} alt="logo" w="100%" />
+        <Link to="/"><Image src={Money_Mentor_logo} alt="logo" w="100%" /></Link>
       </Box>
       <HStack
         justify={"space-evenly"}
@@ -100,37 +116,77 @@ const Navbar = () => {
           </NavLink>
         ))}
       </HStack>
-      <HStack
-        justify={"space-evenly"}
-        spacing={{
-          base: "20px",
-          sm: "20px",
-          md: "30px",
-          lg: "30px",
-          xl: "30px",
-        }}
-      >
-        <Link to="/login">Login</Link>
-        <Link to="/signup" >
-          <Button
-            size={{ base: "sm", sm: "sm", md: "md", lg: "md", xl: "md" }}
-            colorScheme={"pink"}
+
+      {
+        !isAuth ? (
+          <HStack
+            justify={"space-evenly"}
+            spacing={{
+              base: "20px",
+              sm: "20px",
+              md: "30px",
+              lg: "30px",
+              xl: "30px",
+            }}
           >
-            Sign Up
-          </Button>
-        </Link>
-        <Box
-          display={{
-            base: "block",
-            sm: "block",
-            md: "none",
-            lg: "none",
-            xl: "none",
-          }}
-        >
-          <GiHamburgerMenu ref={btnRef} onClick={onOpen} />
-        </Box>
-      </HStack>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">
+              <Button
+                size={{ base: "sm", sm: "sm", md: "md", lg: "md", xl: "md" }}
+                colorScheme={"pink"}
+              >
+                Sign Up
+              </Button>
+            </Link>
+          </HStack>
+        ) : (
+          <HStack spacing={"30px"}>
+            <Menu>
+              <MenuButton>
+                <Avatar
+                  name={`${currentUser.firstname} ${currentUser.lastname}`}
+                  bg="pink.500"
+                  size={{ base: "sm", sm: "sm", md: "sm", lg: "md", xl: "md" }}
+                />
+              </MenuButton>
+
+              <MenuList color="black" fontSize={"16px"}>
+                <Link to="/profile">
+                  
+                  <MenuItem>Profile <Spacer /> <CgProfile /></MenuItem>
+                </Link>
+
+                <Link to="/login">
+                  <MenuItem onClick={() => dispatch({ type: LOGIN_REQUEST })}>
+                    Logout <Spacer /> <FaSignOutAlt />
+                  </MenuItem>
+                </Link>
+              </MenuList>
+            </Menu>
+
+            <Box
+              display={{
+                base: "block",
+                sm: "block",
+                md: "none",
+                lg: "none",
+                xl: "none",
+              }}
+            >
+              <GiHamburgerMenu onClick={onOpen} />
+            </Box>
+          </HStack>
+        )
+
+        // <HStack spacing={"20px"}>
+        //   <Link>
+        //   <Button size={{base:"sm", sm:"sm", md:"sm", ld:"md", xl:"md"}}>Logout</Button>
+        //   </Link>
+
+        //   <Link to="/profile"><Avatar name={"Mohnish Vishwakarma"} size={{base:"sm", sm:"sm", md:"sm", ld:"sm", xl:"md"}} bg="pink.400" /></Link>
+
+        // </HStack>
+      }
 
       <Drawer
         isOpen={isOpen}

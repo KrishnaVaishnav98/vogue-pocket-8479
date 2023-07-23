@@ -1,4 +1,9 @@
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Box,
   Button,
   Card,
@@ -39,8 +44,10 @@ import styled, { keyframes } from "styled-components";
 import family_2 from "../Images/family_2.jpg";
 import family_1 from "../Images/family_1.jpg";
 import { BsFillCheckCircleFill } from "react-icons/bs";
+import { IoIosCall } from "react-icons/io";
+import { MdOutlineEmail } from "react-icons/md";
 
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import article_1 from "../Images/article_1.png";
 import article_2 from "../Images/article_2.png";
@@ -60,6 +67,8 @@ import indian_bank from "../Images/indian_bank.jpg";
 import indusind from "../Images/indusind.png";
 import karnataka_bank from "../Images/karnataka_bank.jpg";
 import kotak from "../Images/kotak.png";
+import proff_women from "../Images/proff_women.jpg";
+import Footer from "../Components/Footer";
 
 
 const steps = [
@@ -93,6 +102,7 @@ const Homepage = () => {
           lg: "row",
           xl: "row",
         }}
+        
       >
         <VStack
           p="20px"
@@ -125,15 +135,15 @@ const Homepage = () => {
           >
             Compare Loans From Several Banks Find The Cheapest Loan
           </Heading>
-          <Link to='/verification'>
-          <Button
-            rightIcon={<GiReceiveMoney size="25px" />}
-            colorScheme={"pink"}
-            borderRadius={"20px"}
-            size={{ base: "md", sm: "md", md: "lg", lg: "lg", xl: "lg" }}
-          >
-            Apply Now
-          </Button>
+          <Link to="/verification">
+            <Button
+              rightIcon={<GiReceiveMoney size="25px" />}
+              colorScheme={"pink"}
+              borderRadius={"20px"}
+              size={{ base: "md", sm: "md", md: "lg", lg: "lg", xl: "lg" }}
+            >
+              Apply Now
+            </Button>
           </Link>
         </VStack>
 
@@ -162,6 +172,7 @@ const Homepage = () => {
         }}
         m="auto"
         mt={"50px"}
+        
       >
         <Heading data-aos="zoom-in-up" size="md" color={"orange"}>
           How It Works
@@ -209,6 +220,7 @@ const Homepage = () => {
           lg: "row",
           xl: "row",
         }}
+        
       >
         <Stepper
           data-aos="zoom-in-right"
@@ -292,7 +304,7 @@ const Homepage = () => {
 
       {/* Part-3 family--------------------------------------------------------------------- */}
 
-      <Box m="auto" mt="150px" bgColor={"#eff7f9"} p="10px">
+      <Box m="auto" mt="150px" bgColor={"#eff7f9"} p="10px" >
         <Heading
           mb="70px"
           fontSize={{
@@ -482,10 +494,9 @@ const Homepage = () => {
         </HStack>
       </Box>
 
+      {/* part-4 Banks -------------------------------------------------------------------------------- */}
 
-      {/* part-5 Banks -------------------------------------------------------------------------------- */}
-
-      <Box mt="150px" textAlign={"center"} bgColor={"#eff7f9"} p="20px">
+      <Box mt="150px" textAlign={"center"} bgColor={"#eff7f9"} p="20px" >
         <Heading color="black" data-aos="zoom-in-up">
           Money Mentor Cooperates With These Banks
         </Heading>
@@ -514,7 +525,6 @@ const Homepage = () => {
           alignItems={"center"}
           placeItems="center"
           textAlign={"center"}
-          
           justifyItems="center"
         >
           <Box w="150px" borderRadius="20px" data-aos="zoom-in-up">
@@ -622,9 +632,9 @@ const Homepage = () => {
         </Grid>
       </Box>
 
-      {/* Part-6 articles --------------------------------------------------------------------- */}
+      {/* Part-5 articles --------------------------------------------------------------------- */}
 
-      <Box mt="150px">
+      <Box mt="150px" >
         <Heading data-aos="zoom-in-up" color={"black"}>
           More About Finance & Loans
         </Heading>
@@ -726,7 +736,304 @@ const Homepage = () => {
         </Grid>
       </Box>
 
-      
+      {/* Part-6---------------------------------------------------------------------------------- */}
+
+      <Box mt="150px" bgColor={"#eff7f9"} p="30px" >
+        <Flex
+          m="auto"
+         
+          justifyContent={{
+            base: "center",
+            sm: "center",
+            md: "center",
+            lg: "space-evenly",
+            xl: "space-evenly",
+          }}
+          placeItems="center"
+          bgColor={"#eff7f9"}
+          flexDirection={{
+            base: "column",
+            sm: "column",
+            md: "column",
+            lg: "row",
+            xl: "row",
+          }}
+          gap="20px"
+        >
+          <Box
+            w={{
+              base: "300px",
+              sm: "300px",
+              md: "500px",
+              lg: "500px",
+              xl: "500px",
+            }}
+            
+          >
+            <Heading textAlign={"left"} data-aos="zoom-in">
+              Our Advisors Are Ready To Help You
+            </Heading>
+
+            <Image
+            data-aos="zoom-in-right"
+              w={{
+                base: "300px",
+                sm: "300px",
+                md: "500px",
+                lg: "500px",
+                xl: "500px",
+              }}
+              src={proff_women}
+              alt="women"
+              borderRadius={"10px"}
+            />
+
+            <HStack
+              flexDirection={{
+                base: "column",
+                sm: "column",
+                md: "row",
+                lg: "row",
+                xl: "row",
+              }}
+              mt="20px"
+              spacing="30px"
+              justifyContent={"center"}
+              data-aos="zoom-in"
+            >
+              <Button
+                leftIcon={<IoIosCall />}
+                _hover={{ color: "white", backgroundColor: "#A555EC" }}
+                fontWeight={"bold"}
+                borderRadius="15px"
+                color="purple"
+              >
+                01234-567890
+              </Button>
+
+              <Button
+                leftIcon={<MdOutlineEmail />}
+                _hover={{ color: "white", backgroundColor: "#A555EC" }}
+                fontWeight={"bold"}
+                borderRadius="15px"
+                color="purple"
+              >
+                Info@moneymentor.com
+              </Button>
+            </HStack>
+          </Box>
+
+          <Box
+            w={{
+              base: "300px",
+              sm: "300px",
+              md: "600px",
+              lg: "600px",
+              xl: "600px",
+            }}
+            bgColor={"white"}
+            p="20px"
+            borderRadius={"20px"}
+            mt="20px"
+            data-aos="zoom-in"
+          >
+            <Accordion defaultIndex={[0]} allowMultiple>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      fontWeight={"bold"}
+                      fontSize="18px"
+                    >
+                      How much can I borrow
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel>
+                  The amount you can borrow depends on various factors,
+                  including your income, credit score, existing debts, and the
+                  lender's criteria. It's essential to consult with a financial
+                  advisor or a loan officer to determine your borrowing capacity
+                  accurately.
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+
+            <Accordion defaultIndex={[1]} allowMultiple>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      fontWeight={"bold"}
+                      fontSize="18px"
+                    >
+                      What are the requirements to get a loan offer?
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel>
+                  <ul>
+                    <li> You must be at least 18 years old</li>
+                    <li> You must have permanent residence in India </li>
+                    <li>
+                      You are not registered in the RKI / Debtor Register (DBR)
+                    </li>
+                  </ul>
+                  The offers you receive are preliminary offers, which are
+                  provided that the information you have entered, are correct.
+                  At the same time, you must sign the loan offer with NemID
+                  before the bank can pay out your loan.
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+
+            <Accordion defaultIndex={[2]} allowMultiple>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      fontWeight={"bold"}
+                      fontSize="18px"
+                    >
+                      How can you reduce the cost of my loans?
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel>
+                  Reducing the cost of your loans can save you money in the long
+                  run and make repayment more manageable. Here are some
+                  strategies to achieve that:
+                  <ul>
+                    <li>Shop Around for Competitive Rates</li>
+                    <li>Improve Your Credit Score</li>
+                    <li>Consider Refinancing</li>
+                    <li>Make Larger Payments</li>
+                    <li>Pay on Time</li>
+                  </ul>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+
+            <Accordion defaultIndex={[3]} allowMultiple>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      fontWeight={"bold"}
+                      fontSize="18px"
+                    >
+                      What does it cost to use Banca?
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
+                  ad saepe repellat assumenda nulla quibusdam maxime, reiciendis
+                  aperiam? Dignissimos voluptas fugit tenetur id aliquid
+                  eligendi amet dolorum ex repellendus ducimus?
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+
+            <Accordion defaultIndex={[4]} allowMultiple>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      fontWeight={"bold"}
+                      fontSize="18px"
+                    >
+                      When is the loan paid out?
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel>
+                  The amount you can borrow depends on various factors,
+                  including your income, credit score, existing debts, and the
+                  lender's criteria. It's essential to consult with a financial
+                  advisor or a loan officer to determine your borrowing capacity
+                  accurately.
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+
+            <Accordion defaultIndex={[5]} allowMultiple>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      fontWeight={"bold"}
+                      fontSize="18px"
+                    >
+                      When is the loan paid out?
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel>
+                  The amount you can borrow depends on various factors,
+                  including your income, credit score, existing debts, and the
+                  lender's criteria. It's essential to consult with a financial
+                  advisor or a loan officer to determine your borrowing capacity
+                  accurately.
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+
+            <Accordion defaultIndex={[6]} allowMultiple>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      fontWeight={"bold"}
+                      fontSize="18px"
+                    >
+                      How long is the repayment period?
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel>
+                  The amount you can borrow depends on various factors,
+                  including your income, credit score, existing debts, and the
+                  lender's criteria. It's essential to consult with a financial
+                  advisor or a loan officer to determine your borrowing capacity
+                  accurately.
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+          </Box>
+        </Flex>
+      </Box>
+
+      {/* Footer------------------------------------------------------------------------- */}
+      <Footer />
     </Box>
   );
 };

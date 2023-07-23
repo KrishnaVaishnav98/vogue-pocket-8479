@@ -64,9 +64,9 @@ import { login } from '../Redux/Authentication/action';
                 isClosable: true,
               })
           // navigate(location.state, {replace:true})
-          setTimeout(()=>{
-            navigate("/")
-          },4000)
+          
+            return navigate("/")
+         
       })
         
 
