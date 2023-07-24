@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { AUTH_ERROR, AUTH_REQUEST, AUTH_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS } from "./actionTypes";
+import { AUTH_ERROR, AUTH_REQUEST, AUTH_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "./actionTypes";
 
 
 export const signup = (formData) => async (dispatch) => {
@@ -22,7 +22,7 @@ export const signup = (formData) => async (dispatch) => {
 
 export const login = (loginData) => async (dispatch) => {
 
-  dispatch({ type: AUTH_REQUEST })
+  dispatch({ type: LOGIN_REQUEST })
   return axios.get(`https://money-mentor.onrender.com/LoginUsers`).then((res) => {
     // console.log(res)
     res.data.map((el) => {

@@ -1,5 +1,5 @@
-import React, { useState,useEffect, useRef } from 'react'
-import {  useLocation, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect, useRef } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import blackbgEar from '../Assets/black.jpg'
 import 'animate.css';
 import { color, useToast } from '@chakra-ui/react'
@@ -16,9 +16,9 @@ import {
   Button,
   Heading,
   Text,
-  useColorModeValue,  
+  useColorModeValue,
   Link
- } from '@chakra-ui/react';
+} from '@chakra-ui/react';
 import { ArrowForwardIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../Redux/Authentication/action';
@@ -26,58 +26,57 @@ import login_bg from '../Images/login_bg.jpg'
 
 
 
- function Login() {
+function Login() {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [showPassword, setShowPassword] = useState(false);
   const toast = useToast()
   const location = useLocation()
-  const {user} = useSelector((store)=>store.authReducer)
-  const {isAuth} = useSelector((store)=>store.authReducer)
-  const {isError} = useSelector((store)=>store.authReducer)
-  const [logindata,setLoginData] = useState({
-    email:"",
-    password:""
+  const { user } = useSelector((store) => store.authReducer)
+  const { isAuth } = useSelector((store) => store.authReducer)
+  const { isError } = useSelector((store) => store.authReducer)
+  const [logindata, setLoginData] = useState({
+    email: "",
+    password: ""
   })
 
   const handleLogin = (e) => {
-      e.preventDefault()
-      if(!logindata.email || !logindata.password){
-        toast({
-                title: 'Failed!!',
-                description: 'Please fill all the fields.',
-                status: 'error',
-                position: 'top',
-                duration: 4000,
-                isClosable: true,
-              }) 
-      }
-
-      dispatch(login(logindata)).then((res)=>{
-
-        toast({
-                title: 'Success',
-                description: 'User LoggedIn Successful',
-                status: 'success',
-                position: 'top',
-                duration: 4000,
-                isClosable: true,
-              })
-          // navigate(location.state, {replace:true})
-          
-            return navigate("/")
-         
+    e.preventDefault()
+    if (!logindata.email || !logindata.password) {
+      toast({
+        title: 'Failed!!',
+        description: 'Please fill all the fields.',
+        status: 'error',
+        position: 'top',
+        duration: 4000,
+        isClosable: true,
       })
-        
+    } else {
+
+      dispatch(login(logindata)).then((res) => {
+
+        toast({
+          title: 'Success',
+          description: 'User LoggedIn Successful',
+          status: 'success',
+          position: 'top',
+          duration: 4000,
+          isClosable: true,
+        })
+        navigate(location.state, { replace: true })
+
+      })
+    }
 
   }
 
 
-  const [submissiondisbled,setSubmissiondisbled] = useState(false)
+  const [submissiondisbled, setSubmissiondisbled] = useState(false)
 
- 
+
   return (
+
    <>
    <Box    style={{backgroundImage:`url(${login_bg})`, 
   //  backgroundRepeat:"no-repeat",
@@ -191,17 +190,16 @@ import login_bg from '../Images/login_bg.jpg'
               <Text align={'center'}>
                <Link href="/admin" color={'rgb(255,189,89)'} fontWeight={"600"} > Admin Login <ArrowForwardIcon  /> </Link>
               </Text>
-            </Stack>
-          </Stack>
-        </Box>
-      </Stack>
-    </Flex>
-        </form>
-        
-        </Box>
-       
 
-       </>
+
+            </Stack>
+          </Flex>
+        </form>
+
+      </Box>
+
+
+    </>
   );
 }
 
