@@ -51,6 +51,7 @@ export const BankApplicationMain = () => {
         loanTerm: '',
         loanPurpose: '',
         bankname: bankData?.name || '',
+        bankImg: bankData?.image || '',
         status: 'pending'
     };
 

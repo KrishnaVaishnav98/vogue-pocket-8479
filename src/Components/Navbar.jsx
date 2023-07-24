@@ -39,7 +39,7 @@ import { CgProfile } from "react-icons/cg";
 
 const links = [
   { title: "Home", path: "/" },
-  { title: "Product", path: "/products" },
+  { title: "Product", path: "/verification" },
   { title: "Company", path: "/process" },
   { title: "Support", path: "/support" },
 ];
@@ -152,7 +152,7 @@ const Navbar = () => {
 
               <MenuList color="black" fontSize={"16px"}>
                 <Link to="/profile">
-                  
+
                   <MenuItem>Profile <Spacer /> <CgProfile /></MenuItem>
                 </Link>
 
@@ -212,7 +212,7 @@ const Navbar = () => {
                 _hover={{ bgcolor: "white", fontweight: "bold" }}
                 onClick={onClose}
               >
-                <Link to="/products">Products</Link>
+                <Link to="/verification">Products</Link>
               </ListItem>
               <ListItem
                 color="white"
@@ -232,9 +232,9 @@ const Navbar = () => {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-     
+
     </Flex>
-   
+
   );
 };
 
