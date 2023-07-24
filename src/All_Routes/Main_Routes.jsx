@@ -33,7 +33,7 @@ const Main_Routes = () => {
         <Route path='/profile' element={<Profile />} />
         <Route path='/products' element={<PrivateRoute><Product /></PrivateRoute>} />
         <Route path='/bankApplication' element={<PrivateRoute><BankApplication /></PrivateRoute>} />
-        <Route path='/admin' element={<PrivateRoute><Admin /></PrivateRoute>} />
+        <Route path='/admin' element={<Admin />} />
       </Routes>
     </div >
 
