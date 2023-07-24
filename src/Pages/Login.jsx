@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
-import blackbgEar from '../Assets/black.jpg'
-import 'animate.css';
-import { color, useToast } from '@chakra-ui/react'
+import React, { useState, useEffect, useRef } from "react";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import blackbgEar from "../Assets/black.jpg";
+import "animate.css";
+import { color, useToast } from "@chakra-ui/react";
 import {
   Flex,
   Box,
@@ -17,174 +17,188 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  Link
-} from '@chakra-ui/react';
-import { ArrowForwardIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { useDispatch, useSelector } from 'react-redux'
-import { login } from '../Redux/Authentication/action';
-import login_bg from '../Images/login_bg.jpg'
-
-
+  Link,
+} from "@chakra-ui/react";
+import { ArrowForwardIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../Redux/Authentication/action";
+import login_bg from "../Images/login_bg.jpg";
 
 function Login() {
-
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const toast = useToast()
-  const location = useLocation()
-  const { user } = useSelector((store) => store.authReducer)
-  const { isAuth } = useSelector((store) => store.authReducer)
-  const { isError } = useSelector((store) => store.authReducer)
+  const toast = useToast();
+  const location = useLocation();
+  const { user } = useSelector((store) => store.authReducer);
+  const { isAuth } = useSelector((store) => store.authReducer);
+  const { isError } = useSelector((store) => store.authReducer);
   const [logindata, setLoginData] = useState({
     email: "",
-    password: ""
-  })
+    password: "",
+  });
 
   const handleLogin = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!logindata.email || !logindata.password) {
       toast({
-        title: 'Failed!!',
-        description: 'Please fill all the fields.',
-        status: 'error',
-        position: 'top',
+        title: "Failed!!",
+        description: "Please fill all the fields.",
+        status: "error",
+        position: "top",
         duration: 4000,
         isClosable: true,
-      })
+      });
     } else {
-
       dispatch(login(logindata)).then((res) => {
         if (res) {
-
           // navigate(location.state, { replace: true })
           toast({
-            title: 'Success',
-            description: 'User LoggedIn Successful',
-            status: 'success',
-            position: 'top',
+            title: "Success",
+            description: "User LoggedIn Successful",
+            status: "success",
+            position: "top",
             duration: 4000,
             isClosable: true,
-          })
-
-         
+          });
         } else {
           toast({
-            title: 'Failed!!',
-            description: 'Incorrect details',
-            status: 'error',
-            position: 'top',
+            title: "Failed!!",
+            description: "Incorrect details",
+            status: "error",
+            position: "top",
             duration: 4000,
             isClosable: true,
-          })
+          });
         }
-
-      })
+      });
     }
-
-  }
+  };
 
   useEffect(() => {
     if (isAuth) {
-      navigate(location.state?.from ? location.state.from : '/');
+      navigate(location.state?.from ? location.state.from : "/");
     }
-  }, [isAuth, location.state, navigate]);
+  }, [isAuth, location.state, navigate]);
 
   //  const tonavigate = ()=>{
   //   return navigate("/")
   //  }
 
-  const [submissiondisbled, setSubmissiondisbled] = useState(false)
+  const [submissiondisbled, setSubmissiondisbled] = useState(false);
 
+  const handleAdmin = () => {
+    navigate("/admin");
+  };
 
   return (
-
     <>
-     
-      <Box style={{
-        backgroundImage: `url(${login_bg})`,
-        //  backgroundRepeat:"no-repeat",
-        backgroundSize: "cover",
-      }}>
-
-
-        <form onSubmit={handleLogin} style={{
-          // position:"absolute",
-          //  top:"0",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
+      <Box
+        style={{
+          backgroundImage: `url(${login_bg})`,
+          //  backgroundRepeat:"no-repeat",
           backgroundSize: "cover",
-          minHeight: '100vh'
-
-
         }}
+      >
+        <form
+          onSubmit={handleLogin}
+          style={{
+            // position:"absolute",
+            //  top:"0",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            minHeight: "100vh",
+          }}
         >
-
-
           <Flex
             style={{
               backgroundImage: `url(${login_bg})`,
               //  backgroundRepeat:"no-repeat",
-              backgroundSize: "cover"
-
+              backgroundSize: "cover",
             }}
-
-
-            align={'center'}
-            justify={'left'}
+            align={"center"}
+            justify={"left"}
             p="50px"
-            bg={useColorModeValue('gray.50', 'gray.800')}>
-            <Stack borderRadius={"none"} className="animate__animated animate__pulse" w={{ base: "90%", sm: "90%", md: "80%", lg: "50%", xl: "40%", "2xl": "40%" }} >
-              <Stack align={'center'}>
-                <Heading color={"white"} fontSize={'4xl'} textAlign={'center'}>
+            bg={useColorModeValue("gray.50", "gray.800")}
+          >
+            <Stack
+              borderRadius={"none"}
+              className="animate__animated animate__pulse"
+              w={{
+                base: "90%",
+                sm: "90%",
+                md: "80%",
+                lg: "50%",
+                xl: "40%",
+                "2xl": "40%",
+              }}
+            >
+              <Stack align={"center"}>
+                <Heading color={"white"} fontSize={"4xl"} textAlign={"center"}>
                   Login
                 </Heading>
-
               </Stack>
               <Box
-
-                rounded={'lg'}
-                bg={useColorModeValue('white', 'gray.700')}
-                boxShadow={'lg'}
-                p={8}>
+                rounded={"lg"}
+                bg={useColorModeValue("white", "gray.700")}
+                boxShadow={"lg"}
+                p={8}
+              >
                 <Stack spacing={4}>
-
-
-
-
-                  <FormControl id="email" >
+                  <FormControl id="email">
                     <FormLabel>Email address</FormLabel>
                     <Input
                       borderRight={"none"}
                       borderTop={"none"}
-                      focusBorderColor='none'
-                      placeholder={'Your email address'}
+                      focusBorderColor="none"
+                      placeholder={"Your email address"}
                       // bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
-                      _placeholder={{ opacity: 1, color: '#a0a0a0' }}
+                      _placeholder={{ opacity: 1, color: "#a0a0a0" }}
                       _focus={{
-                        bg: 'whiteAlpha.300',
-                        borderColor: "#FFB300"
-                      }} type="email" value={logindata.email} onChange={(e) => setLoginData((prev) => ({ ...prev, email: e.target.value }))} />
+                        bg: "whiteAlpha.300",
+                        borderColor: "#FFB300",
+                      }}
+                      type="email"
+                      value={logindata.email}
+                      onChange={(e) =>
+                        setLoginData((prev) => ({
+                          ...prev,
+                          email: e.target.value,
+                        }))
+                      }
+                    />
                   </FormControl>
-                  <FormControl id="password" >
+                  <FormControl id="password">
                     <FormLabel>Password</FormLabel>
                     <InputGroup>
-                      <Input borderRight={"none"}
+                      <Input
+                        borderRight={"none"}
                         borderTop={"none"}
-                        focusBorderColor='none'
-                        placeholder={'Your password'}
+                        focusBorderColor="none"
+                        placeholder={"Your password"}
                         // bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
-                        _placeholder={{ opacity: 1, color: '#a0a0a0' }}
+                        _placeholder={{ opacity: 1, color: "#a0a0a0" }}
                         _focus={{
-                          bg: 'whiteAlpha.300',
-                          borderColor: "#FFB300"
-                        }} value={logindata.password} onChange={(e) => setLoginData((prev) => ({ ...prev, password: e.target.value }))} type={showPassword ? 'text' : 'password'} />
-                      <InputRightElement h={'full'}>
+                          bg: "whiteAlpha.300",
+                          borderColor: "#FFB300",
+                        }}
+                        value={logindata.password}
+                        onChange={(e) =>
+                          setLoginData((prev) => ({
+                            ...prev,
+                            password: e.target.value,
+                          }))
+                        }
+                        type={showPassword ? "text" : "password"}
+                      />
+                      <InputRightElement h={"full"}>
                         <Button
-                          variant={'ghost'}
+                          variant={"ghost"}
                           onClick={() =>
                             setShowPassword((showPassword) => !showPassword)
-                          }>
+                          }
+                        >
                           {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                         </Button>
                       </InputRightElement>
@@ -194,39 +208,64 @@ function Login() {
                     <Button
                       type="submit"
                       isDisabled={submissiondisbled}
-                      style={{ background: "linear-gradient(to top left, #171616 100%, #363431 51%)" }}
+                      style={{
+                        background:
+                          "linear-gradient(to top left, #171616 100%, #363431 51%)",
+                      }}
                       // bgGradient='linear(to-r, #171616, #363431)'
                       loadingText="Submitting"
                       size="lg"
-                      bg={'blue.400'}
-                      color={'white'}
+                      bg={"blue.400"}
+                      color={"white"}
                       _hover={{
                         // bg: 'blue.500',
-                        bgGradient: 'linear(to-r,  #363431,#171616)',
+                        bgGradient: "linear(to-r,  #363431,#171616)",
                         border: "1px solid #FFB300 ",
-                        color: "#FFB300"
-                      }}>
+                        color: "#FFB300",
+                      }}
+                    >
                       Login
                     </Button>
                   </Stack>
                   <Stack pt={6}>
-                    <Text align={'center'}>
-                      Not registered? <Link href="/signup" color={'rgb(255,189,89)'} fontWeight={"600"} >Signup</Link>
+                    <Text align={"center"}>
+                      Not registered?{" "}
+                      <Link
+                        href="/signup"
+                        color={"rgb(255,189,89)"}
+                        fontWeight={"600"}
+                      >
+                        Signup
+                      </Link>
                     </Text>
-                    <Text align={'center'}>
-                      <Link href="/admin" color={'rgb(255,189,89)'} fontWeight={"600"} > Admin Login <ArrowForwardIcon /> </Link>
+                    <Text align={"center"}>
+                      <Button
+                        style={{
+                          background:
+                            "linear-gradient(to top left, #171616 100%, #363431 51%)",
+                        }}
+                        // bgGradient='linear(to-r, #171616, #363431)'
+                        size="lg"
+                        bg={"blue.400"}
+                        color={"white"}
+                        _hover={{
+                          // bg: 'blue.500',
+                          bgGradient: "linear(to-r,  #363431,#171616)",
+                          border: "1px solid #FFB300 ",
+                          color: "#FFB300",
+                        }}
+                        onClick={handleAdmin}
+                      >
+                        Admin Login
+                      </Button>
                     </Text>
                   </Stack>
                 </Stack>
               </Box>
-
             </Stack>
           </Flex>
         </form>
-
       </Box>
-
-
     </>
   );
 }

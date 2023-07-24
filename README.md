@@ -24,7 +24,7 @@ Rest assured, your data is protected with the highest level of security measures
 
 
 
-- Live preview : https://medwise.netlify.app/
+- Live preview : https://money-mentor.netlify.app/
 
 
 # Features
