@@ -30,6 +30,7 @@ export const BankApplicationMain = () => {
 
 
     const initialUserInfo = {
+        id:`${Math.floor(Math.random() * (100 - 1 + 1)) + 1}`,
         fullname: `${currentUser.firstname} ${currentUser.lastname}` || '',
         contact: currentUser?.contact || '',
         email: currentUser?.email || '',
@@ -50,6 +51,7 @@ export const BankApplicationMain = () => {
         loanTerm: '',
         loanPurpose: '',
         bankname: bankData?.name || '',
+        bankImg: bankData?.image || '',
         status: 'pending'
     };
 
@@ -134,7 +136,7 @@ export const BankApplicationMain = () => {
     return (
 
 
-        <Box display={{ base: "block", sm: "block", md: "flex", lg: "flex", xl: "flex", "2xl": "flex" }} mt="50px" ml={{ base: "50px", sm: "20px", md: "50px", lg: "100px", xl: "100px" }}>
+        <Box display={{ base: "block", sm: "block", md: "flex", lg: "flex", xl: "flex", "2xl": "flex" }} mt="50px" ml={{ base: "50px", sm: "20px", md: "50px", lg: "100px", xl: "100px" }} mb={"50px"}>
 
             <Box w={{ base: "200px", sm: "200px", md: "300px", lg: "300px", lg: "300px", xl: "300px" }}>
                 <Box mb="20px" >
