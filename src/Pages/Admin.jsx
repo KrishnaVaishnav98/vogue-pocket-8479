@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../Redux/BankApplication/action";
+import Swal from "sweetalert2";
 
 export const Admin = () => {
   //   const allUsers = useSelector(
@@ -101,6 +102,13 @@ export const Admin = () => {
         .then((response) => response.json())
         .then((data) => {
           // Handle the response from the server if needed
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Status has been updated.',
+            showConfirmButton: false,
+            timer: 1500
+          })
           console.log("Updated data from server:", data);
         })
         .catch((error) => {
