@@ -41,7 +41,7 @@ const [loans,setLoans]=useState([])
         <div style={{display:window.innerWidth>650?"flex":"grid",justifyContent:"start",paddingTop:"20px",backgroundColor:"#E5D1FA",alignContent:"center"}}>
             <div style={{display:"flex",alignContent:"center",alignItems:"center",justifyContent:"center",backgroundColor:"#E5D1FA",marginBottom:"20px"}}>
         
-            <img style={{ width: "50%",backgroundColor:"#E5D1FA",borderRadius:"100%"}} src={data.bankImg} alt="" />
+            <img style={{ width: "50%",backgroundColor:"#E5D1FA",borderRadius:"100%"}} src="https://img.freepik.com/premium-vector/man-profile-cartoon_18591-58482.jpg?w=740" alt="" />
             </div>
             <div style={{marginLeft:"10%",paddingBottom:"10px"}}>
                 <h3> <label style={{color:"#07051f"}}>Name :  </label> {data.firstname || data.fullname} {data.lastname}</h3>
@@ -61,7 +61,7 @@ const [loans,setLoans]=useState([])
                 <Text fontSize={"15px"} fontWeight={"bold"}>Active Loans</Text>
                 {loans.map((el)=>(
                 <Box pr={"10px"} mb={"20px"} >
-                  <Box>  <img src={"https://personalloan.paisabazaar.com/components/images/bank-new-logos/266.gif"} alt="" /></Box>
+                  <Box>  <img src={el.bankImg} alt="" /></Box>
                   <Box style={{display:"flex",justifyContent:"space-around",width:"250px"}}>
                  <Text fontSize={"15px"} fontWeight={"bold"}>Status:{el.status}</Text>
                  <Text fontSize={"15px"} fontWeight={"bold"}>Loan: Rs{el.loanAmount}</Text>
