@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import blackbgEar from '../Assets/black.jpg'
 import 'animate.css';
 import { color, useToast } from '@chakra-ui/react'
@@ -55,16 +55,28 @@ function Login() {
     } else {
 
       dispatch(login(logindata)).then((res) => {
+        if (res) {
 
-        toast({
-          title: 'Success',
-          description: 'User LoggedIn Successful',
-          status: 'success',
-          position: 'top',
-          duration: 4000,
-          isClosable: true,
-        })
-        navigate(location.state, { replace: true })
+          // navigate(location.state, { replace: true })
+          toast({
+            title: 'Success',
+            description: 'User LoggedIn Successful',
+            status: 'success',
+            position: 'top',
+            duration: 4000,
+            isClosable: true,
+          })
+
+        } else {
+          toast({
+            title: 'Failed!!',
+            description: 'Incorrect details',
+            status: 'error',
+            position: 'top',
+            duration: 4000,
+            isClosable: true,
+          })
+        }
 
       })
     }
@@ -76,7 +88,9 @@ function Login() {
 
 
   return (
+
     <>
+      {isAuth && navigate(location.state, { replace: true })}
       <Box style={{
         backgroundImage: `url(${login_bg})`,
         //  backgroundRepeat:"no-repeat",
@@ -190,7 +204,7 @@ function Login() {
                       Not registered? <Link href="/signup" color={'rgb(255,189,89)'} fontWeight={"600"} >Signup</Link>
                     </Text>
                     <Text align={'center'}>
-                      <Link href="/adminlogin" color={'rgb(255,189,89)'} fontWeight={"600"} > Admin Login <ArrowForwardIcon /> </Link>
+                      <Link href="/admin" color={'rgb(255,189,89)'} fontWeight={"600"} > Admin Login <ArrowForwardIcon /> </Link>
                     </Text>
                   </Stack>
                 </Stack>
