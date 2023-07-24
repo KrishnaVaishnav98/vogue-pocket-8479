@@ -67,6 +67,7 @@ function Login() {
             isClosable: true,
           })
 
+         
         } else {
           toast({
             title: 'Failed!!',
@@ -83,6 +84,15 @@ function Login() {
 
   }
 
+  useEffect(() => {
+    if (isAuth) {
+      navigate(location.state?.from ? location.state.from : '/');
+    }
+  }, [isAuth, location.state, navigate]);
+
+  //  const tonavigate = ()=>{
+  //   return navigate("/")
+  //  }
 
   const [submissiondisbled, setSubmissiondisbled] = useState(false)
 
@@ -90,7 +100,7 @@ function Login() {
   return (
 
     <>
-      {isAuth && navigate(location.state, { replace: true })}
+     
       <Box style={{
         backgroundImage: `url(${login_bg})`,
         //  backgroundRepeat:"no-repeat",
