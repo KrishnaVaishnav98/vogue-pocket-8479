@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ALL_USER_ERROR, ALL_USER_REQUEST, ALL_USER_SUCCESS, BANK_DATA_ERROR, BANK_DATA_REQUEST, BANK_DATA_SUCCESS, GET_LOAN_DATA_ERROR, GET_LOAN_DATA_REQUEST, GET_LOAN_DATA_SUCCESS, LOAN_DATA_ERROR, LOAN_DATA_REQUEST, LOAN_DATA_SUCCESS } from "./actionTypes"
+import { ALL_USER_ERROR, ALL_USER_REQUEST, ALL_USER_SUCCESS, BANK_DATA_ERROR, BANK_DATA_REQUEST, BANK_DATA_SUCCESS, CURRENT_USER_SUCCESS, GET_LOAN_DATA_ERROR, GET_LOAN_DATA_REQUEST, GET_LOAN_DATA_SUCCESS, LOAN_DATA_ERROR, LOAN_DATA_REQUEST, LOAN_DATA_SUCCESS } from "./actionTypes"
 
 export const handleLoanDataSubmit = (id, loans, userInfo) => (dispatch) => {
 
@@ -34,6 +34,21 @@ export const getAllUsers = () => async (dispatch) => {
     return axios.get(`https://money-mentor.onrender.com/LoginUsers`).then((res) => {
         // console.log(res)
         dispatch({ type: ALL_USER_SUCCESS, payload: res.data })
+
+    }).catch((err) => {
+        dispatch({ type: ALL_USER_ERROR })
+    })
+}
+
+export const getCurrentUser = (id) => async (dispatch) => {
+
+    dispatch({ type: ALL_USER_REQUEST })
+    return axios.get(`https://money-mentor.onrender.com/LoginUsers/${id}`).then((res) => {
+
+        // const user = res.data.find((el) => el.id === id);
+        // if (user) {
+        dispatch({ type: CURRENT_USER_SUCCESS, payload: res.data });
+        console.log("User found:", res.data)
 
     }).catch((err) => {
         dispatch({ type: ALL_USER_ERROR })
