@@ -7,34 +7,39 @@ import { EmploymentDetailsStep } from './EmploymentDetailsStep';
 import { PersonalInfoStep } from './PersonalInfoStep';
 import { FinancialInfoStep } from './FinancialInfoStep';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBankData, getLoanData, handleLoanDataSubmit } from '../Redux/BankApplication/action';
+import { getAllUsers, getBankData, getCurrentUser, getLoanData, handleLoanDataSubmit } from '../Redux/BankApplication/action';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 
 export const BankApplicationMain = () => {
 
     const currentUser = useSelector(store => store.authReducer.currentUser);
-    const bankData = useSelector(store => store.bankApplicationReducer.bankData);
     const loans = useSelector(store => store.bankApplicationReducer.loans);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const toast = useToast();
-    const location = useLocation()
-    const id = new URLSearchParams(location.search).get('id')
-
+    const location = useLocation();
+    const id = new URLSearchParams(location.search).get('id');
+    const [alert, setAlert] = useState()
+    let myUser = {};
 
     useEffect(() => {
         dispatch(getBankData(id))
         dispatch(getLoanData(currentUser.id))
+        dispatch(getCurrentUser(currentUser.id))
     }, [])
-
+    const currentUserbyId = useSelector(store => store.bankApplicationReducer.currentUserbyId);
+    const bankData = useSelector(store => store.bankApplicationReducer.bankData);
+    console.log("currentUserbyId", currentUserbyId);
+    console.log("bankData", bankData.image);
 
     const initialUserInfo = {
-        id:`${Math.floor(Math.random() * (100 - 1 + 1)) + 1}`,
-        fullname: `${currentUser.firstname} ${currentUser.lastname}` || '',
-        contact: currentUser?.contact || '',
-        email: currentUser?.email || '',
-        address: currentUser?.address || '',
+        id: `${Math.floor(Math.random() * (100 - 1 + 1)) + 1}`,
+        fullname: currentUserbyId?.fullname || currentUser.firstname || "",
+        contact: currentUserbyId?.contact || currentUser?.contact || '',
+        email: currentUserbyId?.email || currentUser?.email || '',
+        address: currentUserbyId?.address || currentUser?.address || '',
         employer: '',
         jobTitle: '',
         yearsOfEmployment: '',
@@ -43,15 +48,15 @@ export const BankApplicationMain = () => {
         savingsInvestments: '',
         outstandingLoansDebt: '',
         assets: '',
-        // identificationProof: '',
-        // incomeProof: '',
-        // addressProof: '',
-        loanType: bankData?.category || "",
+        identificationProof: '',
+        incomeProof: '',
+        addressProof: '',
+        loanType: bankData.category,
         loanAmount: '',
         loanTerm: '',
         loanPurpose: '',
-        bankname: bankData?.name || '',
-        bankImg: bankData?.image || '',
+        bankname: bankData.name,
+        bankImg: bankData.image,
         status: 'pending'
     };
 
@@ -64,7 +69,6 @@ export const BankApplicationMain = () => {
     ]
     const [activeStep, setActiveStep] = useState(0);
     const [userInfo, setUserInfo] = useState(initialUserInfo);
-    const [alert, setAlert] = useState(false)
     const navigate = useNavigate()
 
     const handleNextStep = () => {

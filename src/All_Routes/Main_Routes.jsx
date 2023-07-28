@@ -30,7 +30,7 @@ const Main_Routes = () => {
         <Route path='/verification' element={<PrivateRoute><Application /></PrivateRoute>} />
 
         <Route path='/process' element={<Process />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route path='/profile' element={<PrivateRoute><Profile /></PrivateRoute>} />
         <Route path='/products' element={<PrivateRoute><Product /></PrivateRoute>} />
         <Route path='/bankApplication' element={<PrivateRoute><BankApplication /></PrivateRoute>} />
         <Route path='/admin' element={<Admin />} />

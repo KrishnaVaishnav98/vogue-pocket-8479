@@ -1,5 +1,5 @@
 import React from 'react'
-import { ALL_USER_ERROR, ALL_USER_REQUEST, ALL_USER_SUCCESS, BANK_DATA_ERROR, BANK_DATA_REQUEST, BANK_DATA_SUCCESS, GET_LOAN_DATA_ERROR, GET_LOAN_DATA_REQUEST, GET_LOAN_DATA_SUCCESS, LOAN_DATA_ERROR, LOAN_DATA_REQUEST, LOAN_DATA_SUCCESS } from './actionTypes'
+import { ALL_USER_ERROR, ALL_USER_REQUEST, ALL_USER_SUCCESS, BANK_DATA_ERROR, BANK_DATA_REQUEST, BANK_DATA_SUCCESS, CURRENT_USER_SUCCESS, GET_LOAN_DATA_ERROR, GET_LOAN_DATA_REQUEST, GET_LOAN_DATA_SUCCESS, LOAN_DATA_ERROR, LOAN_DATA_REQUEST, LOAN_DATA_SUCCESS } from './actionTypes'
 
 
 const initialState = {
@@ -9,7 +9,8 @@ const initialState = {
     allUsersError: false,
     allUsersLoading: false,
     allUsers: [],
-    bankData: {}
+    bankData: {},
+    currentUserbyId: {}
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -95,6 +96,13 @@ export const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 allUsersLoading: false,
                 allUsersError: true
+            }
+        }
+        case CURRENT_USER_SUCCESS: {
+            return {
+                ...state,
+                allUsersLoading: false,
+                currentUserbyId: payload
             }
         }
         default: {
