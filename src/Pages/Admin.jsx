@@ -97,7 +97,7 @@ export const Admin = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ loans: [updatedLoanData] }),
+        body: JSON.stringify(updatedLoanData),
       })
         .then((response) => response.json())
         .then((data) => {
