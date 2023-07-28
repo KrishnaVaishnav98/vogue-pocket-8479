@@ -27,7 +27,7 @@ export const Product = () => {
         serCategory(userId.category)
       })
   }
-  fetchuser()
+  
 
   const [order, setOrder] = useState(initialOrder || "")
 
@@ -39,10 +39,7 @@ export const Product = () => {
       _order: searchParams.get("order")
     }
   }
-  useEffect(() => {
-    console.log(paramsObj)
-    dispatch(getProducts(paramsObj))
-  }, [searchParams, order, category])
+
   useEffect(() => {
     const params = {
       category
@@ -50,6 +47,12 @@ export const Product = () => {
     order && (params.order = order)
     setSearchParams(params)
   }, [order, category])
+
+  useEffect(() => {
+    fetchuser()
+    dispatch(getProducts(paramsObj))
+  }, [searchParams, order, category])
+  
 
   const changeinterest = (val) => {
     setOrder(val)

@@ -7,21 +7,22 @@ import { Text } from "@chakra-ui/react"
 import axios from "axios"
 export const Profile=()=>{
 const [loans,setLoans]=useState([])
-  const data=useSelector((store)=>
+const [data,setData]=useState([])
+  const data2=useSelector((store)=>
   store.authReducer.currentUser
   )
 
    const fetchLoans=()=>{
     axios
-    .get(`https://money-mentor.onrender.com/LoginUsers/${data.id}`)
+    .get(`https://money-mentor.onrender.com/LoginUsers/${data2.id}`)
     .then((res)=>{
     setLoans(res.data.loans)
-    console.log(res.data)
+    setData(res.data)
     })
    }
  useEffect(()=>{
   fetchLoans()
- })
+ },[])
    
  
 
