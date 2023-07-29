@@ -56,7 +56,7 @@ export const BankApplicationMain = () => {
         loanTerm: '',
         loanPurpose: '',
         bankname: bankData.name,
-        bankImg: bankData.image,
+        bankImg: bankData.image ,
         status: 'pending'
     };
 
@@ -114,7 +114,9 @@ export const BankApplicationMain = () => {
         }
         else {
             dispatch(handleLoanDataSubmit(currentUser.id, loans, userInfo)).then(() => {
+                console.log("UserInformation",userInfo)
                 setUserInfo(initialUserInfo)
+                
                 // toast({
                 //     title: 'Success',
                 //     description: 'Application Request Successful',
